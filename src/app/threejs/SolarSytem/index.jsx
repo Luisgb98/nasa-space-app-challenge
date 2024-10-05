@@ -32,9 +32,9 @@ export function SolarSystem({changeCameraPosition}) {
   return (
     <>
       {/* Sun */}
-      <Bounds fit clip observe margin={4}>
+      <Bounds fit clip observe margin={2}>
         <SelectToZoom>
-        <Sphere texture={sun.texture} size={sun.size} position={[0, 0, 0]} />
+        <Sphere texture={sun.texture} size={sun.radius} position={[0, 0, 0]} />
 
         <group>
           {planets.map((planet, index) => {
@@ -61,7 +61,7 @@ function SelectToZoom({ children }) {
       onClick={(e) => (
         e.stopPropagation(), e.delta <= 4 && api.refresh(e.object).fit()
       )}
-      /* onPointerMissed={(e) => e.button === 0 && api.refresh().fit()} */
+      onPointerMissed={(e) => e.button === 0 && api.refresh().fit()} 
     >
       {children}
     </group>
