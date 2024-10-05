@@ -3,7 +3,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { lucia } from "@/app/lib/lucia/lucia";
+import { lucia } from "@/lib/lucia/lucia";
 import { container } from "@/app/inversify.config";
 import { UserCreator } from "@/app/api/contexts/auth/users/application/user-creator/user-creator";
 import { CreateUserDtoSchema } from "@/lib/dtos/users/create/create-user-dto";

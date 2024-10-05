@@ -2,7 +2,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { lucia } from "@/app/lib/lucia/lucia";
+import { lucia } from "@/lib/lucia/lucia";
 import { container } from "@/app/inversify.config";
 import { UserVerifier } from "@/app/api/contexts/auth/users/application/user-verifier/user-verifier";
 import { GetUserDtoSchema } from "@/lib/dtos/users/get/get-user-dto";

@@ -1,10 +1,32 @@
-import { PlanetsSearcher } from "@/app/api/contexts/nasa/planets/application/planets-searcher/planets-searcher";
-import { container } from "@/app/inversify.config";
-import Canva from "./threejs/SolarSytem/canva";
+"use client";
 
-export default async function SolarSystemPage() {
-  const planetsSearcher = container.get<PlanetsSearcher>(PlanetsSearcher);
-  const planets = await planetsSearcher.search();
+import { useRef } from "react";
+import { Vector3 } from "three";
+import { Canvas } from "@react-three/fiber";
+import { SolarSystem } from "./threejs/SolarSytem/solar-system";
+import { OrbitControls } from "@react-three/drei";
 
-  return <Canva planets={planets} />;
+export default function Home() {
+  const orbitRef = useRef(null);
+
+  // THIS https://codesandbox.io/p/sandbox/ssr-test-8pbw1f?file=%2Fsrc%2FApp.js
+
+  return (
+    <div
+      style={{ height: "100vh", width: "100vw", backgroundColor: "#021631" }}
+    >
+      <Canvas camera={{ position: new Vector3(0, 20, 0) }}>
+        <directionalLight position={[10, 10, 5]} intensity={5} />
+        <ambientLight intensity={2} />
+        <SolarSystem />
+        <OrbitControls
+          ref={orbitRef}
+          minAzimuthAngle={-Math.PI / 4}
+          maxAzimuthAngle={Math.PI / 4}
+          minPolarAngle={Math.PI / 6}
+          maxPolarAngle={Math.PI - Math.PI / 6}
+        />
+      </Canvas>
+    </div>
+  );
 }

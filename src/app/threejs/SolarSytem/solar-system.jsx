@@ -1,11 +1,11 @@
 import { Bounds, useBounds } from "@react-three/drei";
 import { sun } from "./_helper";
 import React from "react";
-import { Sun } from "./Planets";
-import { Sphere } from "./Planets";
-import { Ellipse } from "./Planets/Ellipse";
+import { Sun } from "./planets";
+import { Sphere } from "./planets";
+import { Ellipse } from "./planets/Ellipse";
 
-export const SolarSystem = ({ planets }) => {
+export const SolarSystem = () => {
   return (
     <>
       {/* Sun */}
