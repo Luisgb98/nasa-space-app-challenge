@@ -46,7 +46,7 @@ export function SolarSystem({changeCameraPosition}) {
     <>
       {/* Sun */}
       <Bounds fit clip observe margin={1.2}>
-        <Sphere texture={"./sun.jpg"} size={10232} position={[0, 0, 0]} />
+        <Sphere texture={"./sun.jpg"} size={80} position={[0, 0, 0]} />
 
         <group>
           {planets.map((planet, index) => {
@@ -58,11 +58,7 @@ export function SolarSystem({changeCameraPosition}) {
               />
             );
           })}
-          {/* Earth */}
-          {/*  <Sphere color="blue" size={1} position={[10, 0, 0]} /> */}
 
-          {/* Moon */}
-          {/* <Sphere color="gray" size={0.27} position={[12, 0, 0]} /> */}
         </group>
       </Bounds>
     </>

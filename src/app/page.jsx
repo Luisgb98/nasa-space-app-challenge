@@ -44,9 +44,6 @@ export default function Home() {
     setLightIntensity(6);
   };
 
-  /*   const resetCamera = () => {
-    orbitRef.current.reset()
-  } */
 
   return (
     <div
