@@ -1,23 +1,18 @@
 "use server";
+
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { lucia } from "@/app/lib/lucia/lucia";
+import { lucia } from "@/lib/lucia/lucia";
 import { container } from "@/app/inversify.config";
 import { UserVerifier } from "@/app/api/contexts/auth/users/application/user-verifier/user-verifier";
 import { GetUserDtoSchema } from "@/lib/dtos/users/get/get-user-dto";
 
 async function signin(formData: FormData): Promise<void> {
   const email = formData.get("email");
-  if (typeof email !== "string" || !/^[a-z0-9_-]+$/.test(email)) {
-    return;
-  }
   const password = formData.get("password");
-  if (
-    typeof password !== "string" ||
-    password.length < 6 ||
-    password.length > 16
-  ) {
+
+  if (!email || !password) {
     return;
   }
 

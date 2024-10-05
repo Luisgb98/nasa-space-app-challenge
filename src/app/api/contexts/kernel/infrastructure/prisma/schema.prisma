@@ -83,6 +83,7 @@ model Stars {
     circumference  Float
     rotationPeriod Float
     rotationSpeed  Float
+    texture        String
 
     @@map("stars")
 }
