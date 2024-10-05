@@ -41,7 +41,7 @@ export function SolarSystem({changeCameraPosition}) {
             return (
               <Sphere
                 texture={planet.texture}
-                size={planet.radius / 1000}
+                size={planet.radius}
                 position={[planet.distance, 0, 0]}
               />
             );
