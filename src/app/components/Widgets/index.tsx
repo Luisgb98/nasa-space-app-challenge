@@ -37,17 +37,17 @@ const Widgets = ({ velocity, setVelocity }: WidgetsProps) => {
         <Stack pl={6} mt={1} spacing={1}>
           <Checkbox
             isChecked={true}
-            onChange={(e) =>
+            /* onChange={(e) =>
               setCheckedItems(check)
-            }
+            } */
           >
             Child Checkbox 1
           </Checkbox>
           <Checkbox
             isChecked={true}
-            onChange={(e) =>
+            /* onChange={(e) =>
               setCheckedItems([checkedItems[0], e.target.checked])
-            }
+            } */
           >
             Child Checkbox 2
           </Checkbox>

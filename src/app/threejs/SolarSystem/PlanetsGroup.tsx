@@ -4,6 +4,7 @@ import React, { useEffect, ReactNode } from "react";
 import { Sun } from "./Planets";
 import { Sphere } from "./Planets";
 import { Ellipse } from "./Planets/Ellipse";
+import { Ring } from "./Planets";
 import { GetPlanetsDto } from "@/lib/dtos/planets/get/get-planets-dto";
 import { Text } from "@chakra-ui/react";
 
@@ -14,6 +15,7 @@ export const PlanetsGroup = () => {
     .then((res) => res.json())
     .then((data) => setPlanets(data.data));
   }, []);
+  console.log(planets);
   
   return (
     <Bounds fit clip observe margin={2}>
@@ -28,15 +30,16 @@ export const PlanetsGroup = () => {
                   texture={planet.texture}
                   radius={planet.scaledRadius}
                   distance={planet.scaledDistance + (sun.radius * 1.5)}
-                  speed={0.01}
+                  speed={0.005}
                   e={planet.eccentricity}
+                  name={planet.name}
                 />
                 {
                   <Ellipse
                     key={index + "-ellipse"}
                     distance={planet.scaledDistance + (sun.radius * 1.5)}
                     e={planet.eccentricity}
-                    color={"white"}
+                    color="white"
                   />
                 }
               </>
