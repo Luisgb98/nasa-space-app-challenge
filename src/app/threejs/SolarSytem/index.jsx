@@ -4,6 +4,9 @@ import { Bounds, OrbitControls, useCursor } from "@react-three/drei";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Vector3 } from "three";
+import React from 'react';
+import { Canvas, useLoader } from '@react-three/fiber';
+import { TextureLoader } from 'three';
 
 function lookAtPosition() {
   useFrame((state, delta) => {
@@ -21,6 +24,9 @@ export function Sphere({ color, size, position }) {
   const onClick = () => {
     lookAtPosition()
   }
+
+  const texture = useLoader(TextureLoader, '../../textures/mars.jpg');
+
   return (
     <mesh
       ref={ref}
@@ -30,7 +36,7 @@ export function Sphere({ color, size, position }) {
       }
     >
       <sphereGeometry args={[size, 16, 16]} />
-      <meshStandardMaterial color={color} />
+      <meshStandardMaterial map={texture} />
     </mesh>
   );
 }
