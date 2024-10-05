@@ -1,6 +1,6 @@
 // components/SolarSystem.js
 import { Bounds, OrbitControls, useCursor, useBounds } from "@react-three/drei";
-import { useRef } from "react";
+import { useRef , useState} from "react";
 import { useFrame } from "@react-three/fiber";
 import { planets, sun } from "./_helper";
 import React from 'react';
@@ -35,12 +35,13 @@ export function Ellipse({ a, e, segments, color, scaleFactor }) {
 export function Sphere({ texture, size, position, a, e }) {
   const ref = useRef();
   const planetTexture = useLoader(TextureLoader, texture);
+  const [t, setT] = useState(0);
   const b = a * Math.sqrt(1 - e * e); // Semi-minor axis
-  const t = 2 * Math.PI;
   useFrame((state, delta) => {
+    setT((prevT) => prevT + 0.1);
     ref.current.rotation.x += delta;
-    ref.current.position.x =  a * Math.cos(t) * delta // X-axis radius
-    ref.current.position.y =  b * Math.sin(t) * delta // Y-axis radius
+    ref.current.position.x =  a * Math.cos(t)  // X-axis radius
+    ref.current.position.y =  b * Math.sin(t)  // Y-axis radius
   });
 
 
