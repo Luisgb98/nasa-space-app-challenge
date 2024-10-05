@@ -1,14 +1,13 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { Vector3 } from "three";
 import { Canvas } from "@react-three/fiber";
 import { SolarSystem } from "./threejs/SolarSytem";
 import { OrbitControls } from "@react-three/drei";
 
 export default function Home() {
-  const [cameraPosition, setCameraPosition] = useState(new Vector3(0, 20, 10));
-  const [lightIntensity, setLightIntensity] = useState(1);
+
   const orbitRef = useRef();
 
 
@@ -18,8 +17,8 @@ export default function Home() {
     <div
       style={{ height: "100vh", width: "100vw", backgroundColor: "#021631" }}
     >
-      <Canvas camera={{ position: cameraPosition }}>
-        <directionalLight position={[10, 10, 5]} intensity={lightIntensity} />
+      <Canvas camera={{ position: new Vector3(0, 20, 10) }}>
+        <directionalLight position={[10, 10, 5]} intensity={5} />
         <ambientLight intensity={2} />
         <SolarSystem />
         <OrbitControls

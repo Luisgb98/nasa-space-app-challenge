@@ -30,6 +30,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/page.jsx"
-  ],
+, "src/app/threejs/SolarSytem/index.jsx"  ],
   "exclude": ["node_modules"]
 }
