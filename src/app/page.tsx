@@ -1,20 +1,27 @@
-/* import { PlanetsSearcher } from "@/app/api/contexts/nasa/planets/application/planets-searcher/planets-searcher";
-import { container } from "@/app/inversify.config";
-import Canva from "./threejs/SolarSytem/canva"; */
-import { Flex } from "@chakra-ui/react";
+'use client'
+import { Box } from "@chakra-ui/react";
 import Widgets from "./components/Widgets";
 import SolarSystemCanvas from "./threejs/SolarSystem";
+import { useState } from "react";
 
-export default async function SolarSystemPage() {
-/*   const planetsSearcher = container.get<PlanetsSearcher>(PlanetsSearcher);
-  const planets = await planetsSearcher.search(); */
+/* interface SolarSystemParams {
+  velocity: number;
+} */
 
+export default function SolarSystemPage() {
+
+  const [velocity, setVelocity] = useState(5)
   return (
-    <Flex
-      style={{ height: "80vh", width: "100vw", backgroundColor: "#021631" }}
+    <Box
+      height="80vh"
+      width="100%"
+      overflowY="hidden"
     >
-      <Widgets />
+      <Widgets
+        velocity={velocity}
+        setVelocity={setVelocity}
+        />
       <SolarSystemCanvas />
-    </Flex>
+    </Box>
   ); 
 }

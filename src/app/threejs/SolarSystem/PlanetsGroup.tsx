@@ -12,7 +12,7 @@ export const PlanetsGroup = () => {
         <SelectToZoom>
           <Sun texture={sun.texture} radius={2} />
           <Sphere
-            texture={"./jupiter.jpg"}
+            texture={"./textures/planets/jupiter.jpg"}
             distance={38.9165}
             radius={6.9911}
             speed={0.005}
@@ -25,7 +25,7 @@ export const PlanetsGroup = () => {
             color={"#ffffff"}
           />
           <Sphere
-            texture={"./earth.jpg"}
+            texture={"./textures/planets/earth.jpg"}
             distance={7.48}
             radius={0.6371}
             speed={0.01}
