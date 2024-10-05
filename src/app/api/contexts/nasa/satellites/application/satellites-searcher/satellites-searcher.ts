@@ -3,7 +3,7 @@ import { inject, injectable } from "inversify";
 import {
   GetSatellitesDto,
   GetSatellitesDtoSchema,
-} from "@/lib/dtos/satellites/get/get-satellites-dto";
+} from "@/lib/dtos/satellite/get/get-satellites-dto";
 import { TYPES } from "@/app/types";
 import { SatellitesRepository } from "../../domain/satellites-repository";
 

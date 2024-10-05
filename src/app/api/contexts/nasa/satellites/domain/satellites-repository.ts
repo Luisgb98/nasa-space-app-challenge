@@ -1,7 +1,7 @@
-import { Planet } from "./satellite";
+import { Satellite } from "./satellite";
 
-export abstract class PlanetsRepository {
-  abstract create(planet: Planet): Promise<void>;
+export abstract class SatellitesRepository {
+  abstract create(planet: Satellite): Promise<void>;
 
-  abstract searchAll(): Promise<Planet[]>;
+  abstract searchAll(): Promise<Satellite[]>;
 }

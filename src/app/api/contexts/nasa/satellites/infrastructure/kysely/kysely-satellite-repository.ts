@@ -1,20 +1,20 @@
 import { injectable } from "inversify";
 
-import { PlanetsRepository } from "../../domain/planets-repository";
-import { Planet } from "../../domain/satellite";
 import { db } from "@/app/api/contexts/kernel/infrastructure/kysely/nasa-db";
+import { Satellite } from "../../domain/satellite";
+import { SatellitesRepository } from "../../domain/satellites-repository";
 
 @injectable()
-export class KyselyUPlanetRepository implements PlanetsRepository {
-  async create(planetData: Planet): Promise<void> {
+export class KyselyUSatelliteRepository implements SatellitesRepository {
+  async create(satelliteData: Satellite): Promise<void> {
     try {
       const primitiveValues = {
-        ...planetData.toPrimitives(),
+        ...satelliteData.toPrimitives(),
         id: undefined,
       };
 
       const created = await db
-        .insertInto("planets")
+        .insertInto("satellites")
         .values(primitiveValues)
         .returningAll()
         .executeTakeFirst();
@@ -26,11 +26,14 @@ export class KyselyUPlanetRepository implements PlanetsRepository {
     }
   }
 
-  async searchAll(): Promise<Planet[]> {
+  async searchAll(): Promise<Satellite[]> {
     try {
-      const planets = await db.selectFrom("planets").selectAll().execute();
+      const satellites = await db
+        .selectFrom("satellites")
+        .selectAll()
+        .execute();
 
-      return planets.map((planet) => Planet.fromPrimitives(planet));
+      return satellites.map((satellite) => Satellite.fromPrimitives(satellite));
     } catch (error) {
       if (error instanceof Error) throw error;
       throw new Error("Ooops! Something went wrong");
