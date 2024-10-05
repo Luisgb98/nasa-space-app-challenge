@@ -17,7 +17,7 @@ export default function Home() {
     <div
       style={{ height: "100vh", width: "100vw", backgroundColor: "#021631" }}
     >
-      <Canvas camera={{ position: new Vector3(0, 20, 10) }}>
+      <Canvas camera={{ position: new Vector3(0, 20, 0) }}>
         <directionalLight position={[10, 10, 5]} intensity={5} />
         <ambientLight intensity={2} />
         <SolarSystem />

@@ -1,80 +1,11 @@
-// components/SolarSystem.js
 import { Bounds, useBounds } from "@react-three/drei";
-import { useRef, useState } from "react";
-import { useFrame } from "@react-three/fiber";
 import { sun } from "./_helper";
 import React from "react";
-import { useLoader } from "@react-three/fiber";
-import { TextureLoader } from "three";
-import { Line } from "@react-three/drei";
+import { Sun } from "./Planets";
+import { Sphere } from "./Planets";
+import { Ellipse } from "./Planets/Ellipse";
 
-export function Ellipse({ distance, e, segments, color }) {
-  const points = [];
-  const a = distance;
-  const b = a * Math.sqrt(1 - e * e);
-  // Generate points for the ellipse
-  for (let i = 0; i <= segments; i++) {
-    const theta = (i / segments) * 2 * Math.PI
-
-    // Calculate the new x, z position for the planet
-    const x = a * Math.cos(theta);
-    const z = b * Math.sin(theta);
-    points.push([x, 0, z]);
-  }
-
-  return (
-    <Line
-      points={points} // Array of points for the ellipse
-      color={color} // Line color
-      lineWidth={2} // Line width
-      dashed={false} // If dashed is true, it makes a dashed line
-    />
-  );
-}
-
-export function Sun({ texture, radius }) {
-  const ref = useRef();
-  const planetTexture = useLoader(TextureLoader, texture);
-  return (
-    <mesh ref={ref}>
-      <sphereGeometry args={[radius, 16, 16]} />
-      <meshStandardMaterial map={planetTexture} />
-    </mesh>
-  );
-}
-
-export function Sphere({ texture, distance, radius, speed, e }) {
-  const ref = useRef();
-  const planetTexture = useLoader(TextureLoader, texture);
-
-  const [theta, setTheta] = useState(0)
-
-  useFrame((state, delta) => {
-    ref.current.rotation.x += delta;
-
-    const a = distance;
-    const b = a * Math.sqrt(1 - e * e);
-
-    // Increment the angle over time to simulate the orbit
-    setTheta((prev) => prev + speed);
-
-    // Calculate the new x, z position for the planet
-    const x = a * Math.cos(theta);
-    const z = b * Math.sin(theta);
-
-    // Update planet's position
-    ref.current.position.set(x, 0, z);
-  });
-
-  return (
-    <mesh ref={ref}>
-      <sphereGeometry args={[radius, 16, 16]} />
-      <meshStandardMaterial map={planetTexture} />
-    </mesh>
-  );
-}
-
-export function SolarSystem() {
+export const SolarSystem = () => {
 
   return (
     <>
@@ -88,6 +19,7 @@ export function SolarSystem() {
             radius={6.9911}
             speed={0.005}
             e={0.0489}
+            tiltY={180}
           />
           <Ellipse
             distance={38.9165}
