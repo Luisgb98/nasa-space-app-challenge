@@ -1,6 +1,6 @@
 // components/SolarSystem.js
 import { Bounds, OrbitControls, useCursor, useBounds } from "@react-three/drei";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { planets, sun } from "./_helper";
 import React from 'react';
@@ -32,24 +32,36 @@ export function Ellipse({ a, e, segments, color, scaleFactor }) {
 
 
 
-export function Sphere({ texture, size, position, a, e }) {
+export function Sphere({ texture, distance, radius, speed, e }) {
   const ref = useRef();
   const planetTexture = useLoader(TextureLoader, texture);
-  const b = a * Math.sqrt(1 - e * e); // Semi-minor axis
-  const t = 2 * Math.PI;
+
+  const [theta, setTheta] = useState(0);
+
+
   useFrame((state, delta) => {
     ref.current.rotation.x += delta;
-    ref.current.position.x =  a * Math.cos(t) * delta // X-axis radius
-    ref.current.position.y =  b * Math.sin(t) * delta // Y-axis radius
+
+     const a = distance;
+     const b = a * Math.sqrt(1 - e * e);
+
+     // Increment the angle over time to simulate the orbit
+     setTheta((prev) => prev + speed);
+
+     // Calculate the new x, z position for the planet
+     const x = a * Math.cos(theta);
+     const z = b * Math.sin(theta);
+
+     // Update planet's position
+     ref.current.position.set(x, 0, z);
   });
 
 
   return (
     <mesh
       ref={ref}
-      position={position}
     >
-      <sphereGeometry args={[size, 16, 16]} />
+      <sphereGeometry args={[radius, 16, 16]} />
       <meshStandardMaterial map={planetTexture} />
     </mesh>
   );
@@ -64,18 +76,18 @@ export function SolarSystem({changeCameraPosition}) {
       <Bounds fit clip observe margin={2}>
         <SelectToZoom>
           {/* <Sphere texture={sun.texture} size={sun.radius} position={[0, 0, 0]} /> */}
-          <Ellipse
+          {/*           <Ellipse
             a={5.2}
             e={0.0489}
             segments={100}
             color="white"
             scaleFactor={7.8}
-          />
+          /> */}
           <Sphere
             texture={"./jupiter.jpg"}
-            size={6.9911}
-            position={[38.9165, 0, 0]}
-            a={5.20}
+            distance={38.9165}
+            radius={6.9911}
+            speed={0.01}
             e={0.0489}
           />
           {/* <group>
