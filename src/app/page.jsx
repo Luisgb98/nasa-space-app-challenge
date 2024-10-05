@@ -46,8 +46,14 @@ export default function Home() {
       <Canvas camera={{ position: cameraPosition }}>
         <directionalLight position={[10, 10, 5]} intensity={lightIntensity} />
         <ambientLight intensity={2} />
-        <SolarSystem  />
-        <OrbitControls ref={orbitRef} />
+        <SolarSystem />
+        <OrbitControls
+          ref={orbitRef}
+          minAzimuthAngle={-Math.PI / 4}
+          maxAzimuthAngle={Math.PI / 4}
+          minPolarAngle={Math.PI / 6}
+          maxPolarAngle={Math.PI - Math.PI / 6}
+        />
       </Canvas>
     </div>
   );
