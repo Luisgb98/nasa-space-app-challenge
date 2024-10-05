@@ -46,14 +46,14 @@ export function SolarSystem({changeCameraPosition}) {
     <>
       {/* Sun */}
       <Bounds fit clip observe margin={1.2}>
-        <Sphere texture={"./sun.jpg"} size={80} position={[0, 0, 0]} />
+        <Sphere texture={"./sun.jpg"} size={695.508} position={[0, 0, 0]} />
 
         <group>
           {planets.map((planet, index) => {
             return (
               <Sphere
                 texture={planet.texture}
-                size={planet.radius / 1000}
+                size={planet.radius}
                 position={[planet.distance, 0, 0]}
               />
             );
