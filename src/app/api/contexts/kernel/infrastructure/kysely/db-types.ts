@@ -16,6 +16,7 @@ export type Planets = {
     rotationSpeed: number;
     mayorAxis: number;
     eccentricity: number;
+    texture: string;
     dwarf: boolean;
 };
 export type Satellites = {
@@ -40,8 +41,8 @@ export type Stars = {
     name: string;
     actualRadius: number;
     scaledRadius: number;
-    actualDistance: number;
-    scaledDistance: number;
+    actualDistance: number | null;
+    scaledDistance: number | null;
     circumference: number;
     rotationPeriod: number;
     rotationSpeed: number;

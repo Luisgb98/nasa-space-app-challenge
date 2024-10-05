@@ -12,6 +12,7 @@ export const GetPlanetsDtoSchema = z.array(
     rotationSpeed: z.number(),
     mayorAxis: z.number(),
     eccentricity: z.number(),
+    texture: z.string(),
     dwarf: z.boolean(),
   })
 );
