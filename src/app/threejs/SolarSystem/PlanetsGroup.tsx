@@ -5,6 +5,7 @@ import { Sun } from "./Planets";
 import { Sphere } from "./Planets";
 import { Ellipse } from "./Planets/Ellipse";
 import { GetPlanetsDto } from "@/lib/dtos/planets/get/get-planets-dto";
+import { Text } from "@chakra-ui/react";
 
 export const PlanetsGroup = () => {
   const [planets, setPlanets] = React.useState<GetPlanetsDto>();
@@ -13,57 +14,37 @@ export const PlanetsGroup = () => {
     .then((res) => res.json())
     .then((data) => setPlanets(data.data));
   }, []);
-  console.log(planets);
   
   return (
-    <React.Fragment>
-      <Bounds fit clip observe margin={2}>
-        <SelectToZoom>
-          <Sun texture={sun.texture} radius={2} />
-          {/* <Sphere
-            texture={"./textures/planets/jupiter.jpg"}
-            distance={38.9165}
-            radius={6.9911}
-            speed={0.005}
-            e={0.0489}
-          />
-          <Ellipse
-            distance={38.9165}
-            e={0.0489}
-            segments={100}
-            color={"#ffffff"}
-          />
-          <Sphere
-            texture={"./textures/planets/earth.jpg"}
-            distance={7.48}
-            radius={0.6371}
-            speed={0.01}
-            e={0.0167}
-          />
-          <Ellipse
-            distance={7.48}
-            e={0.0167}
-            segments={100}
-            color={"#ffffff"}
-          /> */}
-          <group>
-            {planets?.map((planet, index) => {
-              return (
-                <>
-                  <Sphere
-                    texture={"./textures/planets/earth.jpg"}
-                    radius={planet.scaledRadius}
-                    distance={planet.scaledDistance}
-                    speed={0.01}
+    <Bounds fit clip observe margin={2}>
+      <SelectToZoom>
+        <Sun texture={sun.texture} radius={sun.radius} />
+        <group>
+          {planets?.map((planet, index) => {
+            return (
+              <>
+                <Sphere
+                  key={index + "-planet"}
+                  texture={planet.texture}
+                  radius={planet.scaledRadius}
+                  distance={planet.scaledDistance + (sun.radius * 1.5)}
+                  speed={0.01}
+                  e={planet.eccentricity}
+                />
+                {
+                  <Ellipse
+                    key={index + "-ellipse"}
+                    distance={planet.scaledDistance + (sun.radius * 1.5)}
                     e={planet.eccentricity}
+                    color={"white"}
                   />
-                </>
-              );
-            })}
-          </group>
-        </SelectToZoom>
-      </Bounds>
-    </React.Fragment>
+                }
+              </>
+            );
+          })}
+        </group>
+      </SelectToZoom>
+    </Bounds>
   );
 };
 

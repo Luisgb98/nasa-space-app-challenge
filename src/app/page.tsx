@@ -1,27 +1,27 @@
 'use client'
-import { Box } from "@chakra-ui/react";
+import { Box, calc } from "@chakra-ui/react";
 import Widgets from "./components/Widgets";
 import SolarSystemCanvas from "./threejs/SolarSystem";
 import { useState } from "react";
+import Nav from "./components/Navbar";
+import SolarSystem from "./threejs/SolarSystem";
 
-/* interface SolarSystemParams {
-  velocity: number;
-} */
 
 export default function SolarSystemPage() {
 
-  const [velocity, setVelocity] = useState(5)
+  const [velocity, setVelocity] = useState(5);
+  const [showPlanets, setShowPlanets] = useState(true)
+  const [showOrbits, setShowOrbits] = useState(true)
+  const [showLabels, setShowLabels] = useState(true)
+  const [showDwarfPlanets, setShowDwarfPlanets] = useState(true)
+
   return (
-    <Box
-      height="80vh"
-      width="100%"
-      overflowY="hidden"
-    >
-      <Widgets
-        velocity={velocity}
-        setVelocity={setVelocity}
-        />
-      <SolarSystemCanvas />
-    </Box>
+    <>
+      <div style={{ height: "100vh", width: "100vw", overflow: "hidden" }}>
+        <Nav />
+        <Widgets velocity={velocity} setVelocity={setVelocity} />
+        <SolarSystem />
+      </div>
+    </>
   ); 
 }

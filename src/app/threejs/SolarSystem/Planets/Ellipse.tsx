@@ -6,17 +6,16 @@ import * as THREE from "three";
 interface EllipseProps {
   distance: number;
   e: number;
-  segments: number;
   color: string;
 }
 
-export function Ellipse({ distance, e, segments, color }: EllipseProps) {
+export function Ellipse({ distance, e, color }: EllipseProps) {
   const points: THREE.Vector3[] = []
   const a = distance;
   const b = a * Math.sqrt(1 - e * e);
   // Generate points for the ellipse
-  for (let i = 0; i <= segments; i++) {
-    const theta = (i / segments) * 2 * Math.PI;
+  for (let i = 0; i <= 100; i++) {
+    const theta = (i / 100) * 2 * Math.PI;
 
     // Calculate the new x, z position for the planet
     const x = a * Math.cos(theta);
@@ -28,7 +27,7 @@ export function Ellipse({ distance, e, segments, color }: EllipseProps) {
     <Line
       points={points} // Array of points for the ellipse
       color={color} // Line color
-      lineWidth={2} // Line width
+      lineWidth={1} // Line width
       dashed={false} // If dashed is true, it makes a dashed line
     />
   );

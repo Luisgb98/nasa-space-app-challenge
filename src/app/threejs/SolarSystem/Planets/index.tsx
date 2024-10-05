@@ -5,6 +5,7 @@ import React from "react";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader, Vector3 } from "three";
 import * as THREE from "three";
+import { Text } from "@chakra-ui/react"
 
 
 interface SunProps {
@@ -15,10 +16,13 @@ interface SunProps {
 export const Sun = ({ texture, radius }: SunProps) => {
   const planetTexture = useLoader(TextureLoader, texture);
   return (
-    <mesh>
-      <sphereGeometry args={[radius, 16, 16]} />
-      <meshStandardMaterial map={planetTexture} />
-    </mesh>
+    <>
+    {/* <Text>Sun</Text> */}
+      <mesh>
+        <sphereGeometry args={[radius, 16, 16]} />
+        <meshStandardMaterial map={planetTexture} />
+      </mesh>
+    </>
   );
 }
 
