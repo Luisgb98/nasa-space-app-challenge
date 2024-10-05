@@ -1,0 +1,101 @@
+[
+  {
+    "name": "Moon",
+    "actualRadius": 1737.4,
+    "scaledRadius": 0.17374,
+    "actualDistanceFromPlanet": 384400,
+    "scaledDistance": 0.01922,
+    "circumference": 10921.8,
+    "rotationPeriod": 655.7,
+    "rotationSpeed": 16.65,
+    "planet_name": "Earth"
+  },
+  {
+    "name": "Io",
+    "actualRadius": 1821.6,
+    "scaledRadius": 0.18216,
+    "actualDistanceFromPlanet": 421700,
+    "scaledDistance": 0.02108,
+    "circumference": 11433.3,
+    "rotationPeriod": 42.5,
+    "rotationSpeed": 269.6,
+    "planet_name": "Jupiter"
+  },
+  {
+    "name": "Europa",
+    "actualRadius": 1560.8,
+    "scaledRadius": 0.15608,
+    "actualDistanceFromPlanet": 671100,
+    "scaledDistance": 0.03356,
+    "circumference": 9805,
+    "rotationPeriod": 85.2,
+    "rotationSpeed": 115.7,
+    "planet_name": "Jupiter"
+  },
+  {
+    "name": "Ganymede",
+    "actualRadius": 2634.1,
+    "scaledRadius": 0.26341,
+    "actualDistanceFromPlanet": 1070400,
+    "scaledDistance": 0.05352,
+    "circumference": 16548.2,
+    "rotationPeriod": 171.5,
+    "rotationSpeed": 96.9,
+    "planet_name": "Jupiter"
+  },
+  {
+    "name": "Callisto",
+    "actualRadius": 2410.3,
+    "scaledRadius": 0.24103,
+    "actualDistanceFromPlanet": 1882700,
+    "scaledDistance": 0.09413,
+    "circumference": 15102.7,
+    "rotationPeriod": 400.8,
+    "rotationSpeed": 36,
+    "planet_name": "Jupiter"
+  },
+  {
+    "name": "Titan",
+    "actualRadius": 2574.7,
+    "scaledRadius": 0.25747,
+    "actualDistanceFromPlanet": 1222000,
+    "scaledDistance": 0.0611,
+    "circumference": 16195.2,
+    "rotationPeriod": 384.3,
+    "rotationSpeed": 30.3,
+    "planet_name": "Saturn"
+  },
+  {
+    "name": "Enceladus",
+    "actualRadius": 252.1,
+    "scaledRadius": 0.02521,
+    "actualDistanceFromPlanet": 238000,
+    "scaledDistance": 0.0119,
+    "circumference": 1578.4,
+    "rotationPeriod": 32.9,
+    "rotationSpeed": 1152.1,
+    "planet_name": "Saturn"
+  },
+  {
+    "name": "Triton",
+    "actualRadius": 1353.4,
+    "scaledRadius": 0.13534,
+    "actualDistanceFromPlanet": 354800,
+    "scaledDistance": 0.01774,
+    "circumference": 8487.9,
+    "rotationPeriod": 141.6,
+    "rotationSpeed": 1445.4,
+    "planet_name": "Neptune"
+  },
+  {
+    "name": "Charon",
+    "actualRadius": 606,
+    "scaledRadius": 0.0606,
+    "actualDistanceFromPlanet": 19570,
+    "scaledDistance": 0.0009785,
+    "circumference": 3803.1,
+    "rotationPeriod": 153.6,
+    "rotationSpeed": 594,
+    "planet_name": "Pluto"
+  }
+]

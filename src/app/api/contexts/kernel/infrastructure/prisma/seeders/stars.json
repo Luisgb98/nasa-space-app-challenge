@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Sun",
+    "actualRadius": 696340,
+    "scaledRadius": 69.634,
+    "actualDistance": 1,
+    "scaledDistance": 1,
+    "circumference": 4377000,
+    "rotationPeriod": 648,
+    "rotationSpeed": 6752.8
+  }
+]
