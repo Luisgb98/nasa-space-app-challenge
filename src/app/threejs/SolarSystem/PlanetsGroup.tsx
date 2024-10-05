@@ -1,13 +1,21 @@
 import { Bounds, useBounds } from "@react-three/drei";
 import { sun } from "./_helper";
-import React from "react";
+import React, { useEffect, ReactNode } from "react";
 import { Sun } from "./Planets";
 import { Sphere } from "./Planets";
 import { Ellipse } from "./Planets/Ellipse";
+import { GetPlanetsDto } from "@/lib/dtos/planets/get/get-planets-dto";
 
 export const PlanetsGroup = () => {
+  const [planets, setPlanets] = React.useState<GetPlanetsDto>();
+  useEffect(() => {
+    fetch("/api/planets")
+      .then((res) => res.json())
+      .then((data) => setPlanets(data.data));
+  }, []);
+
   return (
-    <>
+    <React.Fragment>
       <Bounds fit clip observe margin={2}>
         <SelectToZoom>
           <Sun texture={sun.texture} radius={2} />
@@ -52,11 +60,9 @@ export const PlanetsGroup = () => {
           </group> */}
         </SelectToZoom>
       </Bounds>
-    </>
+    </React.Fragment>
   );
 };
-
-import { ReactNode } from "react";
 
 function SelectToZoom({ children }: { children: ReactNode }) {
   const api = useBounds();
