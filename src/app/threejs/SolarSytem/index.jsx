@@ -2,7 +2,7 @@
 import { Bounds, OrbitControls, useCursor, useBounds } from "@react-three/drei";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { planets } from "./_helper";
+import { planets, sun } from "./_helper";
 import React from 'react';
 import { useLoader } from '@react-three/fiber';
 import { TextureLoader } from 'three';
@@ -34,7 +34,7 @@ export function SolarSystem({changeCameraPosition}) {
       {/* Sun */}
       <Bounds fit clip observe margin={4}>
         <SelectToZoom>
-        <Sphere texture={"./sun.jpg"} size={80} position={[0, 0, 0]} />
+        <Sphere texture={sun.texture} size={sun.size} position={[0, 0, 0]} />
 
         <group>
           {planets.map((planet, index) => {
