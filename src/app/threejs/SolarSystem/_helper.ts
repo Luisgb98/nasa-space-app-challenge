@@ -8,7 +8,15 @@
  * @property {number} distance - The distance of the planet from the sun.
  */
 
-export const sun = {
+type celestialBody = {
+  name: string;
+  radius: number;
+  distance: number;
+  rotationSpeed: number;
+  texture: string;
+};
+
+export const sun: celestialBody = {
   name: "Sun",
   radius: 69.634,
   distance: 0,
@@ -16,8 +24,8 @@ export const sun = {
   texture: "./sun.jpg",
 };
 
-export const planets = [
-{
+export const planets: celestialBody[] = [
+  {
     name: "Mercury",
     radius: 0.2439,
     distance: 2.8955,
@@ -37,15 +45,6 @@ export const planets = [
     distance: 7.48,
     rotationSpeed: 1.574,
     texture: "./earth.jpg",
-    satelites: [
-      {
-        name: "Moon",
-        radius: 3.474,
-        distance: 11.397,
-        rotationSpeed: 27.3,
-        texture: "./moon.jpg",
-      },
-    ],
   },
   {
     name: "Mars",
@@ -81,5 +80,5 @@ export const planets = [
     distance: 225.2,
     rotationSpeed: 9.719,
     texture: "./neptune.jpg",
-  }
+  },
 ];

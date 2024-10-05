@@ -5,10 +5,9 @@ import { Sun } from "./Planets";
 import { Sphere } from "./Planets";
 import { Ellipse } from "./Planets/Ellipse";
 
-export const SolarSystem = ({ planets }) => {
+export const PlanetsGroup = () => {
   return (
     <>
-      {/* Sun */}
       <Bounds fit clip observe margin={2}>
         <SelectToZoom>
           <Sun texture={sun.texture} radius={2} />
@@ -18,7 +17,6 @@ export const SolarSystem = ({ planets }) => {
             radius={6.9911}
             speed={0.005}
             e={0.0489}
-            tiltY={180}
           />
           <Ellipse
             distance={38.9165}
@@ -58,7 +56,9 @@ export const SolarSystem = ({ planets }) => {
   );
 };
 
-function SelectToZoom({ children }) {
+import { ReactNode } from "react";
+
+function SelectToZoom({ children }: { children: ReactNode }) {
   const api = useBounds();
   return (
     <group

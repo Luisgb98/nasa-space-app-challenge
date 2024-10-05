@@ -1,9 +1,17 @@
 // components/SolarSystem.js
 import React from "react";
 import { Line } from "@react-three/drei";
+import * as THREE from "three";
 
-export function Ellipse({ distance, e, segments, color }) {
-  const points = [];
+interface EllipseProps {
+  distance: number;
+  e: number;
+  segments: number;
+  color: string;
+}
+
+export function Ellipse({ distance, e, segments, color }: EllipseProps) {
+  const points: THREE.Vector3[] = []
   const a = distance;
   const b = a * Math.sqrt(1 - e * e);
   // Generate points for the ellipse
@@ -13,7 +21,7 @@ export function Ellipse({ distance, e, segments, color }) {
     // Calculate the new x, z position for the planet
     const x = a * Math.cos(theta);
     const z = b * Math.sin(theta);
-    points.push([x, 0, z]);
+    points.push(new THREE.Vector3(x, 0, z));
   }
 
   return (
