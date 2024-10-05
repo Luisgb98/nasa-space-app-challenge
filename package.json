@@ -2,7 +2,6 @@
   "name": "nasa-space-app-challenge",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "prisma": {
     "schema": "src/app/api/contexts/kernel/infrastructure/prisma/schema.prisma",
     "seed": "npx tsx src/app/api/contexts/kernel/infrastructure/prisma/seeders/seed.ts"

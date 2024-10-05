@@ -10,7 +10,7 @@ import { StarsRepository } from "../../domain/stars-repository";
 @injectable()
 export class StarsSearcher {
   constructor(
-    @inject(TYPES.SATELLITE)
+    @inject(TYPES.STAR)
     private readonly starsRepository: StarsRepository
   ) {}
 

@@ -5,6 +5,7 @@
     "scaledRadius": 69.634,
     "circumference": 4377000,
     "rotationPeriod": 648,
-    "rotationSpeed": 6752.8
+    "rotationSpeed": 6752.8,
+    "texture": "./textures/stars/sun.jpg"
   }
 ]
