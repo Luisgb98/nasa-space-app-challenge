@@ -1,0 +1,87 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("POSTGRES_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+generator kysely {
+    provider = "prisma-kysely"
+    output   = "../kysely"
+    fileName = "db-types.ts"
+}
+
+model Users {
+    id       Int    @id @default(autoincrement())
+    userId   String @unique
+    email    String @unique
+    password String
+
+    createdAt DateTime   @default(now())
+    updatedAt DateTime   @updatedAt
+    Sessions  Sessions[]
+
+    @@map("users")
+}
+
+model Sessions {
+    id         String   @unique
+    user_id    String
+    expires_at DateTime
+
+    user Users @relation(fields: [user_id], references: [userId])
+
+    @@map("sessions")
+}
+
+model Planets {
+    id                    Int     @id @default(autoincrement())
+    name                  String  @unique
+    actualRadius          Float
+    scaledRadius          Float
+    actualDistanceFromSun Float
+    scaledDistance        Float
+    circumference         Float
+    rotationPeriod        Float
+    rotationSpeed         Float
+    mayorAxis             Float
+    eccentricity          Float
+    dwarf                 Boolean
+
+    Satellites Satellites[]
+
+    @@map("planets")
+}
+
+model Satellites {
+    id                       Int    @id @default(autoincrement())
+    name                     String @unique
+    actualRadius             Float
+    scaledRadius             Float
+    actualDistanceFromPlanet Float
+    scaledDistance           Float
+    circumference            Float
+    rotationPeriod           Float
+    rotationSpeed            Float
+    planet_name              String
+
+    planets Planets @relation(fields: [planet_name], references: [name])
+
+    @@map("satellites")
+}
+
+model Stars {
+    id             Int    @id @default(autoincrement())
+    name           String @unique
+    actualRadius   Float
+    scaledRadius   Float
+    actualDistance Float
+    scaledDistance Float
+    circumference  Float
+    rotationPeriod Float
+    rotationSpeed  Float
+
+    @@map("stars")
+}

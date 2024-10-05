@@ -31,6 +31,16 @@ export function Ellipse({ a, e, segments, color, scaleFactor }) {
 }
 
 
+export function Sun({ texture, radius }) {
+  const ref = useRef();
+  const planetTexture = useLoader(TextureLoader, texture);
+  return (
+    <mesh ref={ref}>
+      <sphereGeometry args={[radius, 16, 16]} />
+      <meshStandardMaterial map={planetTexture} />
+    </mesh>
+  );
+}
 
 export function Sphere({ texture, distance, radius, speed, e }) {
   const ref = useRef();
@@ -75,7 +85,7 @@ export function SolarSystem({changeCameraPosition}) {
       {/* Sun */}
       <Bounds fit clip observe margin={2}>
         <SelectToZoom>
-          {/* <Sphere texture={sun.texture} size={sun.radius} position={[0, 0, 0]} /> */}
+          <Sun texture={sun.texture} size={3} position={[0, 0, 0]} />
           {/*           <Ellipse
             a={5.2}
             e={0.0489}
@@ -89,6 +99,13 @@ export function SolarSystem({changeCameraPosition}) {
             radius={6.9911}
             speed={0.01}
             e={0.0489}
+          />
+          <Sphere
+            texture={"./earth.jpg"}
+            distance={7.48}
+            radius={0.6371}
+            speed={0.01}
+            e={0.0167}
           />
           {/* <group>
             {planets.map((planet, index) => {
