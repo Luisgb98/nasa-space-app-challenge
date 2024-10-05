@@ -1,10 +1,11 @@
 // components/SolarSystem.js
-import { Canvas } from "@react-three/fiber";
 import { Bounds, OrbitControls, useCursor } from "@react-three/drei";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Vector3 } from "three";
 import { planets } from "./_helper";
+import React from 'react';
+import { useLoader } from '@react-three/fiber';
+import { TextureLoader } from 'three';
 
 function lookAtPosition() {
   useFrame((state, delta) => {
@@ -12,16 +13,18 @@ function lookAtPosition() {
   })
 } 
 
-export function Sphere({ color, size, position }) {
+export function Sphere({ texture, size, position }) {
   const ref = useRef();
-  useCursor("active")
+  useCursor("active");
+  const planetTexture = useLoader(TextureLoader, texture);
   useFrame((state, delta) => {
-    ref.current.rotation.x += delta
-  })
+    ref.current.rotation.x += delta;
+  });
 
   const onClick = () => {
-    lookAtPosition()
-  }
+    lookAtPosition();
+  };
+
   return (
     <mesh
       ref={ref}
@@ -31,7 +34,7 @@ export function Sphere({ color, size, position }) {
       }
     >
       <sphereGeometry args={[size, 16, 16]} />
-      <meshStandardMaterial color={color} />
+      <meshStandardMaterial map={planetTexture} />
     </mesh>
   );
 }
@@ -43,26 +46,23 @@ export function SolarSystem({changeCameraPosition}) {
     <>
       {/* Sun */}
       <Bounds fit clip observe margin={1.2}>
-        <Sphere color="yellow" size={3} position={[0, 0, 0]} />
+        <Sphere texture={"./sun.jpg"} size={10232} position={[0, 0, 0]} />
 
         <group>
           {planets.map((planet, index) => {
-            console.log(index)
             return (
               <Sphere
-                key={index}
-                color={planet.color}
-                size={planet.radius/1000}
+                texture={planet.texture}
+                size={planet.radius / 1000}
                 position={[planet.distance, 0, 0]}
               />
-            )
-      })
-        }
+            );
+          })}
           {/* Earth */}
-          <Sphere color="blue" size={1} position={[10, 0, 0]} />
+          {/*  <Sphere color="blue" size={1} position={[10, 0, 0]} /> */}
 
           {/* Moon */}
-          <Sphere color="gray" size={0.27} position={[12, 0, 0]} />
+          {/* <Sphere color="gray" size={0.27} position={[12, 0, 0]} /> */}
         </group>
       </Bounds>
     </>

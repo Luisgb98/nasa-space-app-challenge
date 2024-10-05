@@ -49,10 +49,12 @@ export default function Home() {
   } */
 
   return (
-    <div style={{ height: "100vh", width: "100vw" }}>
+    <div
+      style={{ height: "100vh", width: "100vw", backgroundColor: "#021631" }}
+    >
       <Canvas camera={{ position: cameraPosition }}>
         <directionalLight position={[10, 10, 5]} intensity={lightIntensity} />
-
+        <ambientLight intensity={2} />
         <SolarSystem changeCameraPosition={changeCameraPosition} />
         <OrbitControls ref={orbitRef} />
       </Canvas>
