@@ -10,16 +10,17 @@ export const PlanetsGroup = () => {
   const [planets, setPlanets] = React.useState<GetPlanetsDto>();
   useEffect(() => {
     fetch("/api/planets")
-      .then((res) => res.json())
-      .then((data) => setPlanets(data.data));
+    .then((res) => res.json())
+    .then((data) => setPlanets(data.data));
   }, []);
-
+  console.log(planets);
+  
   return (
     <React.Fragment>
       <Bounds fit clip observe margin={2}>
         <SelectToZoom>
           <Sun texture={sun.texture} radius={2} />
-          <Sphere
+          {/* <Sphere
             texture={"./textures/planets/jupiter.jpg"}
             distance={38.9165}
             radius={6.9911}
@@ -44,20 +45,22 @@ export const PlanetsGroup = () => {
             e={0.0167}
             segments={100}
             color={"#ffffff"}
-          />
-          {/* <group>
-            {planets.map((planet, index) => {
+          /> */}
+          <group>
+            {planets?.map((planet, index) => {
               return (
                 <>
                   <Sphere
-                    texture={planet.texture}
-                    size={planet.radius}
-                    position={[planet.distance, 0, 0]}
+                    texture={"./textures/planets/earth.jpg"}
+                    radius={planet.scaledRadius}
+                    distance={planet.scaledDistance}
+                    speed={0.01}
+                    e={planet.eccentricity}
                   />
                 </>
               );
             })}
-          </group> */}
+          </group>
         </SelectToZoom>
       </Bounds>
     </React.Fragment>
