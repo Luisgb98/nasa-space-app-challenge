@@ -48,6 +48,7 @@ model Planets {
     rotationSpeed         Float
     mayorAxis             Float
     eccentricity          Float
+    texture               String
     dwarf                 Boolean
 
     Satellites Satellites[]
@@ -77,8 +78,8 @@ model Stars {
     name           String @unique
     actualRadius   Float
     scaledRadius   Float
-    actualDistance Float
-    scaledDistance Float
+    actualDistance Float?
+    scaledDistance Float?
     circumference  Float
     rotationPeriod Float
     rotationSpeed  Float

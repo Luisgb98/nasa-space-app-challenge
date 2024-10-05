@@ -10,6 +10,7 @@
     "rotationSpeed": 10.9,
     "mayorAxis": 0.39,
     "eccentricity": 0.2056,
+    "texture": "./textures/planets/mercury.jpg",
     "dwarf": false
   },
   {
@@ -23,6 +24,7 @@
     "rotationSpeed": -6.52,
     "mayorAxis": 0.72,
     "eccentricity": 0.0068,
+    "texture": "./textures/planets/venus.jpg",
     "dwarf": false
   },
   {
@@ -36,6 +38,7 @@
     "rotationSpeed": 1677.9,
     "mayorAxis": 1,
     "eccentricity": 0.0167,
+    "texture": "./textures/planets/earth.jpg",
     "dwarf": false
   },
   {
@@ -49,6 +52,7 @@
     "rotationSpeed": 866.2,
     "mayorAxis": 1.52,
     "eccentricity": 0.0935,
+    "texture": "./textures/planets/mars.jpg",
     "dwarf": false
   },
   {
@@ -62,6 +66,7 @@
     "rotationSpeed": 44363.1,
     "mayorAxis": 5.2,
     "eccentricity": 0.0489,
+    "texture": "./textures/planets/jupiter.jpg",
     "dwarf": false
   },
   {
@@ -75,6 +80,7 @@
     "rotationSpeed": 34185.2,
     "mayorAxis": 9.58,
     "eccentricity": 0.0565,
+    "texture": "./textures/planets/saturn.jpg",
     "dwarf": false
   },
   {
@@ -88,6 +94,7 @@
     "rotationSpeed": -9245.5,
     "mayorAxis": 19.22,
     "eccentricity": 0.0464,
+    "texture": "./textures/planets/uranus.jpg",
     "dwarf": false
   },
   {
@@ -101,6 +108,7 @@
     "rotationSpeed": 9602.1,
     "mayorAxis": 30.05,
     "eccentricity": 0.009,
+    "texture": "./textures/planets/neptune.jpg",
     "dwarf": false
   },
   {
@@ -114,6 +122,7 @@
     "rotationSpeed": 48.5,
     "mayorAxis": 39.48,
     "eccentricity": 0.2488,
+    "texture": "./textures/planets/pluto.jpg",
     "dwarf": true
   },
   {
@@ -127,6 +136,7 @@
     "rotationSpeed": 282,
     "mayorAxis": 96.4,
     "eccentricity": 0.441,
+    "texture": "./textures/planets/eris.jpg",
     "dwarf": true
   },
   {
@@ -140,6 +150,7 @@
     "rotationSpeed": 2610.7,
     "mayorAxis": 43.13,
     "eccentricity": 0.1887,
+    "texture": "./textures/planets/haumea.jpg",
     "dwarf": true
   },
   {
@@ -153,6 +164,7 @@
     "rotationSpeed": 401,
     "mayorAxis": 45.79,
     "eccentricity": 0.1603,
+    "texture": "./textures/planets/makemake.jpg",
     "dwarf": true
   },
   {
@@ -166,6 +178,7 @@
     "rotationSpeed": 324,
     "mayorAxis": 2.77,
     "eccentricity": 0.0808,
+    "texture": "./textures/planets/ceres.jpg",
     "dwarf": true
   }
 ]

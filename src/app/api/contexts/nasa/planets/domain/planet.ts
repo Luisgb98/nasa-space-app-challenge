@@ -2,6 +2,7 @@ import { PlanetId } from "./value-objects/planet-id";
 import { PlanetName } from "./value-objects/planet-name";
 import { PlanetDwarf } from "./value-objects/planet-dwarf";
 import { PlanetNumber } from "./value-objects/planet-number";
+import { PlanetTexture } from "./value-objects/planet-texture";
 
 interface PlanetPrimitives {
   id: number;
@@ -15,6 +16,7 @@ interface PlanetPrimitives {
   rotationSpeed: number;
   mayorAxis: number;
   eccentricity: number;
+  texture: string;
   dwarf: boolean;
 }
 
@@ -30,6 +32,7 @@ export class Planet {
   readonly rotationSpeed: PlanetNumber;
   readonly mayorAxis: PlanetNumber;
   readonly eccentricity: PlanetNumber;
+  readonly texture: PlanetTexture;
   readonly dwarf: PlanetDwarf;
 
   constructor(
@@ -44,6 +47,7 @@ export class Planet {
     rotationSpeed: PlanetNumber,
     mayorAxis: PlanetNumber,
     eccentricity: PlanetNumber,
+    texture: PlanetTexture,
     dwarf: PlanetDwarf
   ) {
     this.id = id;
@@ -57,6 +61,7 @@ export class Planet {
     this.rotationSpeed = rotationSpeed;
     this.mayorAxis = mayorAxis;
     this.eccentricity = eccentricity;
+    this.texture = texture;
     this.dwarf = dwarf;
   }
 
@@ -72,6 +77,7 @@ export class Planet {
     rotationSpeed: PlanetNumber,
     mayorAxis: PlanetNumber,
     eccentricity: PlanetNumber,
+    texture: PlanetTexture,
     dwarf: PlanetDwarf
   ): Planet {
     const planetAggregate = new Planet(
@@ -86,6 +92,7 @@ export class Planet {
       rotationSpeed,
       mayorAxis,
       eccentricity,
+      texture,
       dwarf
     );
 
@@ -105,6 +112,7 @@ export class Planet {
       new PlanetNumber(plainData.rotationSpeed),
       new PlanetNumber(plainData.mayorAxis),
       new PlanetNumber(plainData.eccentricity),
+      new PlanetTexture(plainData.texture),
       new PlanetDwarf(plainData.dwarf)
     );
   }
@@ -122,6 +130,7 @@ export class Planet {
       rotationSpeed: this.rotationSpeed.value,
       mayorAxis: this.mayorAxis.value,
       eccentricity: this.eccentricity.value,
+      texture: this.texture.value,
       dwarf: this.dwarf.value,
     };
   }
