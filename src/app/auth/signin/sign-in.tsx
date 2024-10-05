@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { lucia } from "@/app/lib/lucia/lucia";
 import { container } from "@/app/inversify.config";
 import { UserVerifier } from "@/app/api/contexts/auth/users/application/user-verifier/user-verifier";
-import { GetUserDtoSchema } from "@/app/lib/dtos/users/get/get-user-dto";
+import { GetUserDtoSchema } from "@/lib/dtos/users/get/get-user-dto";
 
 async function signin(formData: FormData): Promise<void> {
   const email = formData.get("email");

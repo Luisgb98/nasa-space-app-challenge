@@ -3,7 +3,7 @@ import { inject, injectable } from "inversify";
 import {
   CreateUserResponseDto,
   CreateUserResponseDtoSchema,
-} from "@/app/lib/dtos/users/create/create-user-response-dto";
+} from "@/lib/dtos/users/create/create-user-response-dto";
 import { User } from "../../domain/user";
 import { TYPES } from "@/app/types";
 import { UserId } from "../../../../kernel/domain/user-id";

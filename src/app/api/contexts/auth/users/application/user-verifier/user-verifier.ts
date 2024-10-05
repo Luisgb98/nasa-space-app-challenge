@@ -6,7 +6,7 @@ import { UserPassword } from "../../domain/value-objects/user-password";
 import { UsersRepository } from "../../domain/users-repository";
 import { UserNotFoundError } from "../../domain/errors/user-not-found-error";
 import { UserPasswordNotMatchError } from "../../domain/errors/user-password-not-match-error";
-import { GetUserVerifiedResponseDto } from "@/app/lib/dtos/users/get/get-user-verified-response-dto";
+import { GetUserVerifiedResponseDto } from "@/lib/dtos/users/get/get-user-verified-response-dto";
 
 @injectable()
 export class UserVerifier {
