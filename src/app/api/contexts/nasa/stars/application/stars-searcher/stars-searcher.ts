@@ -8,7 +8,7 @@ import { TYPES } from "@/app/types";
 import { StarsRepository } from "../../domain/stars-repository";
 
 @injectable()
-export class SatellitesSearcher {
+export class StarsSearcher {
   constructor(
     @inject(TYPES.SATELLITE)
     private readonly starsRepository: StarsRepository

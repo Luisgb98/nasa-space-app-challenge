@@ -13,6 +13,14 @@ import { PlanetsSearcher } from "./api/contexts/nasa/planets/application/planets
 import { PlanetsRepository } from "./api/contexts/nasa/planets/domain/planets-repository";
 import { KyselyPlanetRepository } from "./api/contexts/nasa/planets/infrastructure/kysely/kysely-planet-repository";
 
+import { SatellitesSearcher } from "./api/contexts/nasa/satellites/application/satellites-searcher/satellites-searcher";
+import { SatellitesRepository } from "./api/contexts/nasa/satellites/domain/satellites-repository";
+import { KyselySatelliteRepository } from "./api/contexts/nasa/satellites/infrastructure/kysely/kysely-satellite-repository";
+
+import { StarsSearcher } from "./api/contexts/nasa/stars/application/stars-searcher/stars-searcher";
+import { StarsRepository } from "./api/contexts/nasa/stars/domain/stars-repository";
+import { KyselyStarRepository } from "./api/contexts/nasa/stars/infrastructure/kysely/kysely-star-repository";
+
 const container = new Container();
 
 container.bind<UsersRepository>(TYPES.USER).to(KyselyUserRepository);
@@ -21,5 +29,13 @@ container.bind<UserVerifier>(UserVerifier).toSelf();
 
 container.bind<PlanetsRepository>(TYPES.PLANET).to(KyselyPlanetRepository);
 container.bind<PlanetsSearcher>(PlanetsSearcher).toSelf();
+
+container
+  .bind<SatellitesRepository>(TYPES.SATELLITE)
+  .to(KyselySatelliteRepository);
+container.bind<SatellitesSearcher>(SatellitesSearcher).toSelf();
+
+container.bind<StarsRepository>(TYPES.STAR).to(KyselyStarRepository);
+container.bind<StarsSearcher>(StarsSearcher).toSelf();
 
 export { container };
