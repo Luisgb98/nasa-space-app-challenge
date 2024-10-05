@@ -11,7 +11,7 @@ import { KyselyUserRepository } from "./api/contexts/auth/users/infrastructure/k
 
 import { PlanetsSearcher } from "./api/contexts/nasa/planets/application/planets-searcher/planets-searcher";
 import { PlanetsRepository } from "./api/contexts/nasa/planets/domain/planets-repository";
-import { KyselyUPlanetRepository } from "./api/contexts/nasa/planets/infrastructure/kysely/kysely-planet-repository";
+import { KyselyPlanetRepository } from "./api/contexts/nasa/planets/infrastructure/kysely/kysely-planet-repository";
 
 const container = new Container();
 
@@ -19,7 +19,7 @@ container.bind<UsersRepository>(TYPES.USER).to(KyselyUserRepository);
 container.bind<UserCreator>(UserCreator).toSelf();
 container.bind<UserVerifier>(UserVerifier).toSelf();
 
-container.bind<PlanetsRepository>(TYPES.PLANET).to(KyselyUPlanetRepository);
+container.bind<PlanetsRepository>(TYPES.PLANET).to(KyselyPlanetRepository);
 container.bind<PlanetsSearcher>(PlanetsSearcher).toSelf();
 
 export { container };

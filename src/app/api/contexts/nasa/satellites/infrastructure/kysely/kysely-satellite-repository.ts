@@ -5,7 +5,7 @@ import { Satellite } from "../../domain/satellite";
 import { SatellitesRepository } from "../../domain/satellites-repository";
 
 @injectable()
-export class KyselyUSatelliteRepository implements SatellitesRepository {
+export class KyselySatelliteRepository implements SatellitesRepository {
   async create(satelliteData: Satellite): Promise<void> {
     try {
       const primitiveValues = {
