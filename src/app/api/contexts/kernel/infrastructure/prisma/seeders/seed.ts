@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import planets from "./planets.json";
 import satellites from "./satellites.json";
+import stars from "./stars.json";
 
 const prisma = new PrismaClient();
 async function main() {
@@ -17,6 +18,13 @@ async function main() {
     });
   }
   console.log("Satellites seeded");
+
+  for (const star of stars) {
+    await prisma.stars.create({
+      data: star,
+    });
+  }
+  console.log("Stars seeded");
 }
 
 main()
