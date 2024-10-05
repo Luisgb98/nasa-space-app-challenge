@@ -4,6 +4,7 @@ import { Bounds, OrbitControls, useCursor } from "@react-three/drei";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Vector3 } from "three";
+import { planets } from "./_helper";
 
 function lookAtPosition() {
   useFrame((state, delta) => {
@@ -45,6 +46,18 @@ export function SolarSystem({changeCameraPosition}) {
         <Sphere color="yellow" size={3} position={[0, 0, 0]} />
 
         <group>
+          {planets.map((planet, index) => {
+            console.log(index)
+            return (
+              <Sphere
+                key={index}
+                color={planet.color}
+                size={planet.radius/1000}
+                position={[planet.distance, 0, 0]}
+              />
+            )
+      })
+        }
           {/* Earth */}
           <Sphere color="blue" size={1} position={[10, 0, 0]} />
 

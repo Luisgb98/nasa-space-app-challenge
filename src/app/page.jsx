@@ -36,6 +36,7 @@ export default function Home() {
   const [lightIntensity, setLightIntensity] = useState(1);
   const orbitRef = useRef();
 
+
   // THIS https://codesandbox.io/p/sandbox/ssr-test-8pbw1f?file=%2Fsrc%2FApp.js
   const changeCameraPosition = (newPosition) => {
 
