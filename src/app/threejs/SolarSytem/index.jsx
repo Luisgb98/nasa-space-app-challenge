@@ -6,12 +6,35 @@ import { planets } from "./_helper";
 import React from 'react';
 import { useLoader } from '@react-three/fiber';
 import { TextureLoader } from 'three';
+import { Line } from '@react-three/drei';
 
 function lookAtPosition() {
   useFrame((state, delta) => {
     state.camera.lookAt(0,0,0);
   })
-} 
+}
+
+export function Ellipse({ a, b, segments, color}) {
+  const points = [];
+  
+  // Generate points for the ellipse
+  for (let i = 0; i <= segments; i++) {
+    const t = (i / segments) * 2 * Math.PI;
+    const x = a * Math.cos(t);  // X-axis radius
+    const y = b * Math.sin(t);  // Y-axis radius
+    const z = 0;               // Flat ellipse in the XY plane
+    points.push([x, y, z]);
+  }
+
+  return (
+    <Line
+      points={points}       // Array of points for the ellipse
+      color={color}         // Line color
+      lineWidth={2}         // Line width
+      dashed={false}        // If dashed is true, it makes a dashed line
+    />
+  );
+}
 
 export function Sphere({ texture, size, position }) {
   const ref = useRef();
@@ -46,9 +69,10 @@ export function SolarSystem({changeCameraPosition}) {
     <>
       {/* Sun */}
       <Bounds fit clip observe margin={1.2}>
-        <Sphere texture={"./sun.jpg"} size={695.508} position={[0, 0, 0]} />
+        <Ellipse a={5} b={3} segments={100} color={'red'} />
+        {/* <Sphere texture={"./sun.jpg"} size={695.508} position={[0, 0, 0]} /> */}
 
-        <group>
+        {/*<group>
           {planets.map((planet, index) => {
             return (
               <Sphere
@@ -57,9 +81,9 @@ export function SolarSystem({changeCameraPosition}) {
                 position={[planet.distance, 0, 0]}
               />
             );
-          })}
+})}
 
-        </group>
+        </group>*/}
       </Bounds>
     </>
   );
