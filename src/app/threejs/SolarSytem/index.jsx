@@ -85,7 +85,7 @@ export function SolarSystem({changeCameraPosition}) {
       {/* Sun */}
       <Bounds fit clip observe margin={2}>
         <SelectToZoom>
-          <Sun texture={sun.texture} size={3} position={[0, 0, 0]} />
+          <Sun texture={sun.texture} radius={2} />
           {/*           <Ellipse
             a={5.2}
             e={0.0489}
