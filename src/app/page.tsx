@@ -1,12 +1,10 @@
 import { PlanetsSearcher } from "@/app/api/contexts/nasa/planets/application/planets-searcher/planets-searcher";
 import { container } from "@/app/inversify.config";
+import Canva from "./threejs/SolarSytem/canva";
 
-export const usePlanets = async () => {
-  console.log("Fetching planets data on the server");
+export default async function SolarSystemPage() {
   const planetsSearcher = container.get<PlanetsSearcher>(PlanetsSearcher);
   const planets = await planetsSearcher.search();
 
-  // You can console.log on the server (this will log in the terminal, not the browser console)
-  console.log("Fetched planets", planets);
-  return planets;
-};
+  return <Canva planets={planets} />;
+}

@@ -3,7 +3,7 @@ import { inject, injectable } from "inversify";
 import {
   GetPlanetsDto,
   GetPlanetsDtoSchema,
-} from "@/app/lib/dtos/planets/get/get-planets-dto";
+} from "@/lib/dtos/planets/get/get-planets-dto";
 import { TYPES } from "@/app/types";
 import { PlanetsRepository } from "../../domain/planets-repository";
 
