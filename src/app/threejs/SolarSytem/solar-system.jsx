@@ -5,8 +5,7 @@ import { Sun } from "./Planets";
 import { Sphere } from "./Planets";
 import { Ellipse } from "./Planets/Ellipse";
 
-export const SolarSystem = () => {
-
+export const SolarSystem = ({ planets }) => {
   return (
     <>
       {/* Sun */}
@@ -34,7 +33,12 @@ export const SolarSystem = () => {
             speed={0.01}
             e={0.0167}
           />
-          <Ellipse distance={7.48} e={0.0167} segments={100} color={"#ffffff"} />
+          <Ellipse
+            distance={7.48}
+            e={0.0167}
+            segments={100}
+            color={"#ffffff"}
+          />
           {/* <group>
             {planets.map((planet, index) => {
               return (
@@ -52,7 +56,7 @@ export const SolarSystem = () => {
       </Bounds>
     </>
   );
-}
+};
 
 function SelectToZoom({ children }) {
   const api = useBounds();

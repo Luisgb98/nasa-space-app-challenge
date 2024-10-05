@@ -3,13 +3,11 @@
 import { useRef } from "react";
 import { Vector3 } from "three";
 import { Canvas } from "@react-three/fiber";
-import { SolarSystem } from "./threejs/SolarSytem";
+import { SolarSystem } from "./solar-system";
 import { OrbitControls } from "@react-three/drei";
 
-export default function Home() {
-
+export default function Home({ planets }) {
   const orbitRef = useRef();
-
 
   // THIS https://codesandbox.io/p/sandbox/ssr-test-8pbw1f?file=%2Fsrc%2FApp.js
 
@@ -20,7 +18,7 @@ export default function Home() {
       <Canvas camera={{ position: new Vector3(0, 20, 0) }}>
         <directionalLight position={[10, 10, 5]} intensity={5} />
         <ambientLight intensity={2} />
-        <SolarSystem />
+        <SolarSystem planets={planets} />
         <OrbitControls
           ref={orbitRef}
           minAzimuthAngle={-Math.PI / 4}

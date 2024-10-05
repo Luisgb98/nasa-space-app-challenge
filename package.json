@@ -19,7 +19,6 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@lucia-auth/adapter-postgresql": "^3.1.2",
-    "@node-rs/argon2": "^2.0.0",
     "@prisma/client": "^5.20.0",
     "@react-three/drei": "^9.114.0",
     "@react-three/fiber": "^8.17.9",
