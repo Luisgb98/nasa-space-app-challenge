@@ -1,14 +1,13 @@
 "use server";
-
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { lucia } from "@/app/lib/lucia/lucia";
 import { container } from "@/app/inversify.config";
-import { UserCreator } from "@/app/api/contexts/auth/users/application/user-creator/user-creator";
-import { CreateUserDtoSchema } from "@/app/lib/dtos/users/create/create-user-dto";
+import { UserVerifier } from "@/app/api/contexts/auth/users/application/user-verifier/user-verifier";
+import { GetUserDtoSchema } from "@/app/lib/dtos/users/get/get-user-dto";
 
-async function signup(formData: FormData): Promise<void> {
+async function signin(formData: FormData): Promise<void> {
   const email = formData.get("email");
   if (typeof email !== "string" || !/^[a-z0-9_-]+$/.test(email)) {
     return;
@@ -24,13 +23,13 @@ async function signup(formData: FormData): Promise<void> {
 
   let id;
   try {
-    const user = CreateUserDtoSchema.parse({
+    const user = GetUserDtoSchema.parse({
       email,
       password,
     });
 
-    const userCreator = container.get<UserCreator>(UserCreator);
-    const { userId } = await userCreator.execute(user);
+    const userVerifier = container.get<UserVerifier>(UserVerifier);
+    const { userId } = await userVerifier.execute(user.email, user.password);
     id = userId;
   } catch (error) {
     if (error instanceof Error) {
@@ -52,4 +51,4 @@ async function signup(formData: FormData): Promise<void> {
   return redirect("/");
 }
 
-export default signup;
+export default signin;

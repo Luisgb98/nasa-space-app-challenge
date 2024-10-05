@@ -1,20 +1,18 @@
-"use client";
-
 import {
   Flex,
+  useColorModeValue,
+  Stack,
+  Heading,
   Box,
   FormControl,
   FormLabel,
-  Input,
-  Stack,
   Button,
-  Heading,
-  useColorModeValue,
+  Input,
 } from "@chakra-ui/react";
 
-import signup from "./sign-up";
+import signin from "./sign-in";
 
-export default function SignUp() {
+export default function SignIn() {
   return (
     <Flex
       minH={"100vh"}
@@ -32,7 +30,7 @@ export default function SignUp() {
           boxShadow={"lg"}
           p={8}
         >
-          <form action={signup}>
+          <form action={signin}>
             <Stack spacing={4}>
               <FormControl id="email">
                 <FormLabel>Email address</FormLabel>

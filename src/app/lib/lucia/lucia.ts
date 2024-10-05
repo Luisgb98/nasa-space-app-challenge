@@ -1,7 +1,7 @@
 import { Lucia, TimeSpan } from "lucia";
 import { NodePostgresAdapter } from "@lucia-auth/adapter-postgresql";
 
-import { pool } from "../db/kysely/nasa-db";
+import { pool } from "../../api/contexts/kernel/infrastructure/kysely/nasa-db";
 
 const adapter = new NodePostgresAdapter(pool, {
   user: "users",
