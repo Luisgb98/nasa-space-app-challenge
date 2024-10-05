@@ -38,12 +38,6 @@ export default function Home() {
 
 
   // THIS https://codesandbox.io/p/sandbox/ssr-test-8pbw1f?file=%2Fsrc%2FApp.js
-  const changeCameraPosition = (newPosition) => {
-
-    console.log(newPosition);
-    setLightIntensity(6);
-  };
-
 
   return (
     <div
@@ -52,7 +46,7 @@ export default function Home() {
       <Canvas camera={{ position: cameraPosition }}>
         <directionalLight position={[10, 10, 5]} intensity={lightIntensity} />
         <ambientLight intensity={2} />
-        <SolarSystem changeCameraPosition={changeCameraPosition} />
+        <SolarSystem  />
         <OrbitControls ref={orbitRef} />
       </Canvas>
     </div>

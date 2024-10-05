@@ -1,5 +1,5 @@
 // components/SolarSystem.js
-import { Bounds, OrbitControls, useCursor } from "@react-three/drei";
+import { Bounds, OrbitControls, useCursor, useBounds } from "@react-three/drei";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { planets } from "./_helper";
@@ -7,31 +7,18 @@ import React from 'react';
 import { useLoader } from '@react-three/fiber';
 import { TextureLoader } from 'three';
 
-function lookAtPosition() {
-  useFrame((state, delta) => {
-    state.camera.lookAt(0,0,0);
-  })
-} 
-
 export function Sphere({ texture, size, position }) {
   const ref = useRef();
-  useCursor("active");
   const planetTexture = useLoader(TextureLoader, texture);
   useFrame((state, delta) => {
     ref.current.rotation.x += delta;
   });
 
-  const onClick = () => {
-    lookAtPosition();
-  };
 
   return (
     <mesh
       ref={ref}
       position={position}
-      onClick={
-        onClick
-      }
     >
       <sphereGeometry args={[size, 16, 16]} />
       <meshStandardMaterial map={planetTexture} />
@@ -45,7 +32,8 @@ export function SolarSystem({changeCameraPosition}) {
   return (
     <>
       {/* Sun */}
-      <Bounds fit clip observe margin={1.2}>
+      <Bounds fit clip observe margin={4}>
+        <SelectToZoom>
         <Sphere texture={"./sun.jpg"} size={80} position={[0, 0, 0]} />
 
         <group>
@@ -60,6 +48,7 @@ export function SolarSystem({changeCameraPosition}) {
           })}
 
         </group>
+        </SelectToZoom>
       </Bounds>
     </>
   );
@@ -70,9 +59,9 @@ function SelectToZoom({ children }) {
   return (
     <group
       onClick={(e) => (
-        e.stopPropagation(), e.delta <= 2 && api.refresh(e.object).fit()
+        e.stopPropagation(), e.delta <= 4 && api.refresh(e.object).fit()
       )}
-      onPointerMissed={(e) => e.button === 0 && api.refresh().fit()}
+      /* onPointerMissed={(e) => e.button === 0 && api.refresh().fit()} */
     >
       {children}
     </group>
