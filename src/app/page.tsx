@@ -1,52 +1,54 @@
 "use client";
 
 import * as THREE from "three";
-import { useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { useEffect, useRef, } from "react";
+import Planet from "./threejs/Planet";
+import Cube from "./threejs/Cube";
 
-function Box({ ...props }) {
-  // This reference gives us direct access to the THREE.Mesh object
-  const ref = useRef<THREE.Mesh>(null);
-  // Hold state for hovered and clicked events
-  const [hovered, hover] = useState(false);
-  const [clicked, click] = useState(false);
-  // Subscribe this component to the render-loop, rotate the mesh every frame
-  useFrame((state, delta) => (ref.current!.rotation.x += delta));
-  // Return the view, these are regular Threejs elements expressed in JSX
-  return (
-    <mesh
-      {...props}
-      ref={ref}
-      scale={clicked ? 1.5 : 1}
-      onClick={(event) => click(!clicked)}
-      onPointerOver={(event) => (event.stopPropagation(), hover(true))}
-      onPointerOut={(event) => hover(false)}
-    >
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
-    </mesh>
-  );
-}
+const ThreeScene: React.FC = () => {
+  const mountRef = useRef<HTMLDivElement>(null);
+  const sceneRef = useRef<THREE.Scene | null>(null);
+  const cameraRef = useRef<THREE.Camera | null>(null);
+  const rendererRef = useRef<THREE.Renderer | null>(null);
 
-export default function Home() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+
+      // Set up the scene, camera, and renderer
+      const scene = new THREE.Scene();
+      sceneRef.current = scene;
+
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+      cameraRef.current = camera;
+      const renderer = new THREE.WebGLRenderer();
+      rendererRef.current = renderer;
+      renderer.setSize(window.innerWidth, window.innerHeight);
+
+      mountRef.current?.appendChild(renderer.domElement);
+
+      // Position the camera
+      camera.position.z = 5;
+/* 
+      const geometry = new THREE.BoxGeometry();
+      const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+      const cube = new THREE.Mesh(geometry, material);
+      scene.add(cube);
+      renderer.render(scene, camera); */
+    }
+  }, []);
+
   return (
-    <div className="h-screen">
-      {/* <ThreeScene /> */}
-      <Canvas>
-        <ambientLight intensity={Math.PI / 2} />
-        <spotLight
-          position={[10, 10, 10]}
-          angle={0.15}
-          penumbra={1}
-          decay={0}
-          intensity={Math.PI}
-        />
-        <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-        <Box position={[-1.2, 0, 0]} />
-        <Box position={[1.2, 0, 0]} />
-        <OrbitControls />
-      </Canvas>
+    <div ref={mountRef}>
+      {sceneRef.current && cameraRef.current && rendererRef.current && (
+        <Cube scene={sceneRef.current} renderer={rendererRef.current} camera={cameraRef.current} />
+      )}
     </div>
   );
-}
+};
+
+export default ThreeScene;
