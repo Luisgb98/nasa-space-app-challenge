@@ -4,6 +4,7 @@ import React, { useEffect, ReactNode } from "react";
 import { Sun } from "./Planets";
 import { Sphere } from "./Planets";
 import { Ellipse } from "./Planets/Ellipse";
+import { Ring } from "./Planets";
 import { GetPlanetsDto } from "@/lib/dtos/planets/get/get-planets-dto";
 
 export const PlanetsGroup = () => {
@@ -15,47 +16,30 @@ export const PlanetsGroup = () => {
   }, []);
   console.log(planets);
   
+  const saturn = planets?.find((planet)=>planet.name=='Saturn')
+
   return (
     <React.Fragment>
       <Bounds fit clip observe margin={2}>
         <SelectToZoom>
           <Sun texture={sun.texture} radius={2} />
-          {/* <Sphere
-            texture={"./textures/planets/jupiter.jpg"}
-            distance={38.9165}
-            radius={6.9911}
-            speed={0.005}
-            e={0.0489}
-          />
-          <Ellipse
-            distance={38.9165}
-            e={0.0489}
-            segments={100}
-            color={"#ffffff"}
-          />
-          <Sphere
-            texture={"./textures/planets/earth.jpg"}
-            distance={7.48}
-            radius={0.6371}
+{/*           <Ring
+            texture={'./textures/saturn_ring.jpg'}
+            distance={saturn?.scaledDistance}
             speed={0.01}
-            e={0.0167}
-          />
-          <Ellipse
-            distance={7.48}
-            e={0.0167}
-            segments={100}
-            color={"#ffffff"}
+            e={0.0565}
           /> */}
           <group>
             {planets?.map((planet, index) => {
               return (
                 <>
                   <Sphere
-                    texture={"./textures/planets/earth.jpg"}
+                    texture={planet.texture}
                     radius={planet.scaledRadius}
                     distance={planet.scaledDistance}
                     speed={0.01}
                     e={planet.eccentricity}
+                    name={planet.name}
                   />
                 </>
               );
