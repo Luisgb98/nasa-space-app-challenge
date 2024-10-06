@@ -16,6 +16,7 @@ import {
   useColorModeValue,
   Stack,
   Text,
+  Link,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import React from "react";
@@ -48,7 +49,7 @@ const NavLink = (props: Props) => {
 };
 
 interface NavProps {
-  user: GetUserResponseDto;
+  user: GetUserResponseDto | null;
 }
 
 export default function Nav(props: NavProps) {
@@ -57,7 +58,12 @@ export default function Nav(props: NavProps) {
   return (
     <>
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+        <Flex
+          h={16}
+          position={"relative"}
+          alignItems={"center"}
+          justifyContent={"space-between"}
+        >
           <IconButton
             size={"md"}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -93,11 +99,24 @@ export default function Nav(props: NavProps) {
                   }
                 />
               </MenuButton>
-              <MenuList>
-                <MenuItem>{props.user.email}</MenuItem>
-                <MenuDivider />
-                <MenuItem>Sing out</MenuItem>
-              </MenuList>
+              {props.user ? (
+                <MenuList>
+                  <MenuItem>{props.user.email}</MenuItem>
+                  <MenuDivider />
+                  <MenuItem>
+                    <Link href="/auth/signout">Sign out</Link>
+                  </MenuItem>
+                </MenuList>
+              ) : (
+                <MenuList>
+                  <MenuItem>
+                    <Link href="/auth/signin">Sign in</Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <Link href="/auth/signup">Sign up</Link>
+                  </MenuItem>
+                </MenuList>
+              )}
             </Menu>
           </Flex>
         </Flex>

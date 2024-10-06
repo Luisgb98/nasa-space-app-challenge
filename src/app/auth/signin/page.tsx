@@ -17,14 +17,14 @@ import signin from "./sign-in";
 export default function SignIn() {
   return (
     <Flex
-      minH={"100vh"}
+      minH={"92vh"}
       align={"center"}
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Sign up for an account</Heading>
+          <Heading fontSize={"4xl"}>Sign in into your account</Heading>
         </Stack>
         <Box
           rounded={"lg"}

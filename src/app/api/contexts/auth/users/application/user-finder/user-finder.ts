@@ -14,11 +14,11 @@ export class UserFinder {
     @inject(TYPES.USER) private readonly usersRepository: UsersRepository
   ) {}
 
-  async execute(userId: string): Promise<GetUserResponseDto> {
+  async execute(userId: string): Promise<GetUserResponseDto | null> {
     const id = new UserId(userId);
     const user = await this.usersRepository.findById(id);
     if (!user) {
-      throw new Error("User not found");
+      return null;
     }
 
     return GetUserResponseDtoSchema.parse(user.toPrimitives());

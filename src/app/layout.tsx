@@ -10,10 +10,7 @@ import { cookies } from "next/headers";
 import { Session, User } from "lucia";
 import { lucia } from "@/lib/lucia/lucia";
 import Nav from "./components/Navbar";
-import {
-  GetUserResponseDto,
-  GetUserResponseDtoSchema,
-} from "@/lib/dtos/users/get/get-user-response-dto";
+import { GetUserResponseDto } from "@/lib/dtos/users/get/get-user-response-dto";
 import { container } from "./inversify.config";
 import { UserFinder } from "./api/contexts/auth/users/application/user-finder/user-finder";
 
@@ -68,7 +65,9 @@ export const validateRequest = cache(
   }
 );
 
-export const getUser = async (userId: string): Promise<GetUserResponseDto> => {
+export const getUser = async (
+  userId: string
+): Promise<GetUserResponseDto | null> => {
   const userFinder = container.get<UserFinder>(UserFinder);
   return await userFinder.execute(userId);
 };
@@ -79,8 +78,8 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const result = await validateRequest();
-  if (!result.user) return;
-  const user = await getUser(result.user.id);
+  const user = await getUser(result.user?.id ?? "");
+
   return (
     <html lang="en">
       <body

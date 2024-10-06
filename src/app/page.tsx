@@ -10,7 +10,14 @@ export default function SolarSystemPage() {
 
   return (
     <>
-      <div style={{ height: "100vh", width: "100vw", overflow: "hidden" }}>
+      <div
+        style={{
+          height: "91vh",
+          width: "100vw",
+          overflow: "hidden",
+          position: "relative",
+        }}
+      >
         <Widgets velocity={velocity} setVelocity={setVelocity} />
         <SolarSystem velocity={velocity} />
       </div>

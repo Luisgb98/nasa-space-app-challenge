@@ -8,7 +8,7 @@ import { validateRequest } from "@/app/layout";
 async function signout(): Promise<void> {
   const { session } = await validateRequest();
   if (!session) {
-    return redirect("/login");
+    return redirect("/auth/signin");
   }
 
   await lucia.invalidateSession(session.id);
@@ -21,3 +21,5 @@ async function signout(): Promise<void> {
   );
   return redirect("/");
 }
+
+export default signout;
