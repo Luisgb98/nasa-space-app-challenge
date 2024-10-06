@@ -7,14 +7,14 @@ import { PlanetsGroup } from "./PlanetsGroup";
 import { OrbitControls } from "@react-three/drei";
 
 
-const SolarSystem = () => {
+const SolarSystem = ({velocity}) => {
   const orbitRef = useRef(null);
 
   return (
     <Canvas camera={{ position: new Vector3(0, 10, 20) }}>
       <directionalLight position={[10, 10, 5]} intensity={5} />
       <ambientLight intensity={2} />
-      <PlanetsGroup />
+      <PlanetsGroup velocity={velocity}/>
       <OrbitControls
         ref={orbitRef}
         enableRotate={false}

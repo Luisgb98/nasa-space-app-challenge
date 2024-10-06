@@ -12,7 +12,7 @@ export default function SolarSystemPage() {
     <>
       <div style={{ height: "100vh", width: "100vw", overflow: "hidden" }}>
         <Widgets velocity={velocity} setVelocity={setVelocity} />
-        <SolarSystem />
+        <SolarSystem velocity={velocity} />
       </div>
     </>
   );

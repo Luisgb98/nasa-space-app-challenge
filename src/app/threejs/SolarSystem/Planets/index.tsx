@@ -40,10 +40,11 @@ interface SphereProps {
   speed: number;
   e: number;
   name: string;
+  rotationspeed: number;
 }
 
 
-export const Sphere = ({ texture, distance, radius, speed, e, name }: SphereProps) => {
+export const Sphere = ({ texture, distance, radius, speed, e, name, rotationspeed }: SphereProps) => {
   const ref = useRef<THREE.Mesh | null>(null);
   const groupRef = useRef<THREE.Group | null>(null)
   const planetTexture = useLoader(TextureLoader, texture);
@@ -68,7 +69,7 @@ export const Sphere = ({ texture, distance, radius, speed, e, name }: SphereProp
 
     // Update planet's position
     groupRef.current.position.set(x, 0, z);
-    ref.current.rotateOnAxis(new Vector3(0, 1, 0).normalize(), 0.05);
+    ref.current.rotateOnAxis(new Vector3(0, 1, 0).normalize(), 0.05 * rotationspeed / 10000);
 
   });
 
@@ -81,6 +82,18 @@ export const Sphere = ({ texture, distance, radius, speed, e, name }: SphereProp
             distance={distance}
             speed={0.005}
             e={0.0565}
+        />
+      }
+      {
+        (name == 'Earth') && 
+        <Sphere 
+          texture={'./textures/satellites/moon.jpg'}
+          distance={1.01922}
+          radius={0.17374}
+          speed={0.005}
+          e={0}
+          name={'Moon'}
+          rotationspeed={16.65}
         />
       }
       <mesh ref={ref}>
