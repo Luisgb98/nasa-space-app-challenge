@@ -9,6 +9,7 @@
     "rotationPeriod": 655.7,
     "rotationSpeed": 16.65,
     "translationSpeed": 1.02,
+    "texture": "./textures/satellites/moon.jpg",
     "planet_name": "Earth"
   },
   {
@@ -21,6 +22,7 @@
     "rotationPeriod": 42.5,
     "rotationSpeed": 269.6,
     "translationSpeed": 17.33,
+    "texture": "./textures/satellites/io.jpg",
     "planet_name": "Jupiter"
   },
   {
@@ -33,6 +35,7 @@
     "rotationPeriod": 85.2,
     "rotationSpeed": 115.7,
     "translationSpeed": 13.74,
+    "texture": "./textures/satellites/europa.jpg",
     "planet_name": "Jupiter"
   },
   {
@@ -45,6 +48,7 @@
     "rotationPeriod": 171.5,
     "rotationSpeed": 96.9,
     "translationSpeed": 10.91,
+    "texture": "./textures/satellites/ganymede.jpg",
     "planet_name": "Jupiter"
   },
   {
@@ -57,6 +61,7 @@
     "rotationPeriod": 400.8,
     "rotationSpeed": 36,
     "translationSpeed": 8.21,
+    "texture": "./textures/satellites/callisto.jpg",
     "planet_name": "Jupiter"
   },
   {
@@ -69,6 +74,7 @@
     "rotationPeriod": 384.3,
     "rotationSpeed": 30.3,
     "translationSpeed": 5.57,
+    "texture": "./textures/satellites/titan.jpg",
     "planet_name": "Saturn"
   },
   {
@@ -81,6 +87,7 @@
     "rotationPeriod": 32.9,
     "rotationSpeed": 1152.1,
     "translationSpeed": 12.94,
+    "texture": "./textures/satellites/enceladus.jpg",
     "planet_name": "Saturn"
   },
   {
@@ -93,6 +100,7 @@
     "rotationPeriod": 141.6,
     "rotationSpeed": 1445.4,
     "translationSpeed": 3.86,
+    "texture": "./textures/satellites/triton.jpg",
     "planet_name": "Neptune"
   },
   {
@@ -105,6 +113,7 @@
     "rotationPeriod": 153.6,
     "rotationSpeed": 594,
     "translationSpeed": 0.00023,
+    "texture": "./textures/satellites/charon.jpg",
     "planet_name": "Pluto"
   }
 ]
