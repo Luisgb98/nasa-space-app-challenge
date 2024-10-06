@@ -11,6 +11,7 @@ export class KyselyConfigFactory {
         user: config.user,
         password: config.password,
         database: config.database,
+        ssl: config.ssl,
       },
       maxConnections: config.max,
     };

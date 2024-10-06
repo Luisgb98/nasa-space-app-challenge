@@ -10,6 +10,7 @@ const config = {
   password: env.DB.DB_PASSWORD,
   port: parseInt(env.DB.DB_PORT, 10),
   max: parseInt(env.DB.DB_POOL_MAX, 10),
+  ssl: env.DB.ssl,
 };
 
 export default config;

@@ -21,7 +21,11 @@ interface PlanetsHandlerProps {
   setPlanetSelected: React.Dispatch<React.SetStateAction<GetPlanetDto | null>>;
 }
 
-export const PlanetsHandler = ({ params, planetSelected, setPlanetSelected }: PlanetsHandlerProps) => {
+export const PlanetsHandler = ({
+  params,
+  planetSelected,
+  setPlanetSelected,
+}: PlanetsHandlerProps) => {
   const [planets, setPlanets] = React.useState<GetPlanetsDto>();
 
   const { camera } = useThree();
@@ -45,11 +49,11 @@ export const PlanetsHandler = ({ params, planetSelected, setPlanetSelected }: Pl
 
     if (planetSelected && focus) {
       // Adjust camera position and lookAt dynamically when a planet is selected
-      vec.set(focus.x, focus.y + 3, focus.z + planetSelected.scaledRadius * 4);
+      vec.set(focus.x, focus.y + 3, focus.z + planetSelected.scaledRadius * 6);
       lookVec.set(focus.x, focus.y, focus.z); // Look at the selected planet
     } else {
       // Default camera position and lookAt when no planet is selected
-       vec.copy(state.camera.position);
+      vec.copy(state.camera.position);
       lookVec.set(0, 0, 0);
     }
 
@@ -61,20 +65,20 @@ export const PlanetsHandler = ({ params, planetSelected, setPlanetSelected }: Pl
     state.camera.updateProjectionMatrix();
   });
 
-const zoomToView = (
-  focusRef: React.RefObject<THREE.Object3D>,
-  planet: GetPlanetDto
-) => {
-  if (!focusRef.current) return;
-  if (planetSelected && planetSelected.name === planet.name) {
-    setPlanetSelected(null); // Unset the planet selection
-    setFocus(new THREE.Vector3(0, 30, 50)); // Reset the focus
-  } else {
-    // Otherwise, select the new planet and zoom to its position
-    setPlanetSelected(planet);
-    setFocus(focusRef.current.position.clone()); // Update focus position
-  }
-};
+  const zoomToView = (
+    focusRef: React.RefObject<THREE.Object3D>,
+    planet: GetPlanetDto
+  ) => {
+    if (!focusRef.current) return;
+    if (planetSelected && planetSelected.name === planet.name) {
+      setPlanetSelected(null); // Unset the planet selection
+      setFocus(new THREE.Vector3(0, 30, 50)); // Reset the focus
+    } else {
+      // Otherwise, select the new planet and zoom to its position
+      setPlanetSelected(planet);
+      setFocus(focusRef.current.position.clone()); // Update focus position
+    }
+  };
 
   return (
     <Bounds fit clip observe margin={5}>
@@ -95,15 +99,14 @@ const zoomToView = (
                   params={params}
                 />
               )}
-              {
-                params.togOrbits && (
+              {params.togOrbits && (
                 <Ellipse
                   key={index + "-ellipse"}
                   distance={planet.scaledDistance + sun.radius * 1.5}
                   e={planet.eccentricity}
                   color={planet.dwarf ? "#7E60BF" : "#229799"}
                 />
-            )}
+              )}
             </>
           );
         })}
