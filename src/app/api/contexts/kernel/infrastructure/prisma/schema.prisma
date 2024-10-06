@@ -67,6 +67,7 @@ model Satellites {
     rotationPeriod           Float
     rotationSpeed            Float
     translationSpeed         Float
+    texture                  String
     planet_name              String
 
     planets Planets @relation(fields: [planet_name], references: [name])

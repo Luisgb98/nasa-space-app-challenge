@@ -31,6 +31,7 @@ export type Satellites = {
     rotationPeriod: number;
     rotationSpeed: number;
     translationSpeed: number;
+    texture: string;
     planet_name: string;
 };
 export type Sessions = {

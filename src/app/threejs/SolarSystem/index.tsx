@@ -5,13 +5,15 @@ import { Vector3 } from "three";
 import { Canvas } from "@react-three/fiber";
 import { PlanetsHandler } from "./PlanetsHandler";
 import { OrbitControls } from "@react-three/drei";
+import { WidgetParams } from "@/app/page";
+
 
 
 interface SolarSystemProps {
-  velocity: number;
+  params: WidgetParams;
 }
 
-const SolarSystem = ({velocity} : SolarSystemProps) => {
+const SolarSystem = ({params} : SolarSystemProps) => {
   const orbitRef = useRef(null);
 
   return (
@@ -23,7 +25,7 @@ const SolarSystem = ({velocity} : SolarSystemProps) => {
         enableRotate={false}
         enableZoom={true}
       />
-      <PlanetsHandler velocity={velocity}/>
+      <PlanetsHandler params={params}/>
     </Canvas>
   );
 };

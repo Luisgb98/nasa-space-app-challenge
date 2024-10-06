@@ -4,11 +4,14 @@ import { useState } from "react";
 interface WidgetsProps {
     velocity: number;
     setVelocity: (velocity: number) => void;
+    togPlanets: boolean;
+    setPlanets: (togPlanets: boolean) => void;
 }
 
-const Widgets = ({ velocity, setVelocity }: WidgetsProps) => {
+const Widgets = ({ velocity, setVelocity, 
+  togPlanets, setPlanets,
+   }: WidgetsProps) => {
 
-  const [checkedItems, setCheckedItems] = useState([]);
   return (
     <Flex color="white" width="100%">
       <Flex flexGrow={1} p={4} flexDir="column">
@@ -34,20 +37,20 @@ const Widgets = ({ velocity, setVelocity }: WidgetsProps) => {
         </Text>
         <Stack pl={6} mt={1} spacing={1}>
           <Checkbox
-            isChecked={true}
+            defaultChecked
             /* onChange={(e) =>
               setCheckedItems(check)
             } */
           >
-            Child Checkbox 1
+            Toggle Orbits
           </Checkbox>
           <Checkbox
-            isChecked={true}
-            /* onChange={(e) =>
-              setCheckedItems([checkedItems[0], e.target.checked])
-            } */
+            defaultChecked
+            onChange={(e) =>
+              setPlanets(e.target.checked)
+            }
           >
-            Child Checkbox 2
+            Toggle Planets
           </Checkbox>
         </Stack>
       </Flex>
