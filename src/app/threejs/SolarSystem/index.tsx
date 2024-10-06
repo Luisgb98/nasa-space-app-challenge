@@ -22,7 +22,7 @@ const SolarSystem = ({params} : SolarSystemProps) => {
       <ambientLight intensity={2} />
       <OrbitControls
         ref={orbitRef}
-        // enableRotate={false}
+        enableRotate={false}
         enableZoom={true}
       />
       <PlanetsHandler params={params}/>
