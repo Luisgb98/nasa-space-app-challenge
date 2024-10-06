@@ -2,7 +2,7 @@ import { Bounds, useBounds } from "@react-three/drei";
 import * as THREE from "three";
 import { sun } from "./_helper";
 import React, { useEffect, ReactNode, useState } from "react";
-import { PlanetCard, PlanetGroup, Sun } from "./Planets";
+import { PlanetGroup, Sun } from "./Planets";
 import { Sphere } from "./Planets";
 import { Ellipse } from "./Planets/Ellipse";
 import { Ring } from "./Planets";
@@ -66,9 +66,14 @@ const zoomToView = (
   planet: GetPlanetDto
 ) => {
   if (!focusRef.current) return;
-
-  setPlanetSelected(planet); // Update the selected planet
-  setFocus(focusRef.current.position.clone()); // Store the focus position
+  if (planetSelected && planetSelected.name === planet.name) {
+    setPlanetSelected(null); // Unset the planet selection
+    setFocus(new THREE.Vector3(0, 30, 50)); // Reset the focus
+  } else {
+    // Otherwise, select the new planet and zoom to its position
+    setPlanetSelected(planet);
+    setFocus(focusRef.current.position.clone()); // Update focus position
+  }
 };
 
   return (

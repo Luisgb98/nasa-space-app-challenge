@@ -11,36 +11,6 @@ import { GetSatellitesDto } from "@/lib/dtos/satellite/get/get-satellites-dto";
 import { Satellite } from "@/app/api/contexts/nasa/satellites/domain/satellite";
 import { WidgetParams } from "@/app/page";
 
-interface PlanetCard {
-  planet: GetPlanetDto
-}
-
-export const PlanetCard = () => {
-  return (
-    <Html
-      style={{
-        position: "fixed",
-        top: "10px",
-        right: "10px",
-        zIndex: 1,
-      }}
-    >
-      <div
-        style={{
-          background: "rgba(255, 255, 255, 0.8)",
-          padding: "8px 12px",
-          borderRadius: "12px",
-          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
-          fontFamily: "Arial, sans-serif",
-          fontSize: "14px",
-          color: "#333",
-        }}
-      >
-        {"Hola"}
-      </div>
-    </Html>
-  );
-};
 
 interface LabelProps {
   position: [number, number, number];

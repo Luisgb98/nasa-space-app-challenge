@@ -37,28 +37,6 @@ interface Props {
   children: React.ReactNode;
 }
 
-const Links = ["Dashboard", "Projects", "Team"];
-
-const NavLink = (props: Props) => {
-  const { children } = props;
-
-  return (
-    <Box
-      as="a"
-      px={2}
-      py={1}
-      rounded={"md"}
-      _hover={{
-        textDecoration: "none",
-        bg: useColorModeValue("gray.200", "gray.700"),
-      }}
-      href={"#"}
-    >
-      {children}
-    </Box>
-  );
-};
-
 interface NavProps {
   user: GetUserResponseDto | null;
 }
@@ -102,15 +80,7 @@ export default function Nav(props: NavProps) {
           />
           <HStack spacing={8} alignItems={"center"}>
             <Text fontWeight={900} fontSize="20px">AstrON</Text>
-            <HStack
-              as={"nav"}
-              spacing={4}
-              display={{ base: "none", md: "flex" }}
-            >
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </HStack>
+
           </HStack>
           <Flex alignItems={"center"}>
             <Menu>
@@ -147,11 +117,6 @@ export default function Nav(props: NavProps) {
         {/* Mobile Menu */}
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
-            <Stack as={"nav"} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </Stack>
           </Box>
         ) : null}
       </Box>

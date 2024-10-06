@@ -22,7 +22,7 @@ const Widgets = ({ velocity, setVelocity,
 
   return (
     <Flex color="white" width="100%" flexDir={{ base: "column", md: "row" }}>
-      <Flex flexGrow={1} pt={4} px={4} flexDir="column">
+      <Flex flexGrow={1} pt={4} px={8} flexDir="column">
         <Text mb={3} fontWeight={900}>
           Bodies velocity
         </Text>
