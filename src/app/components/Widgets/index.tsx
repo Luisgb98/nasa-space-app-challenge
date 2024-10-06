@@ -6,8 +6,6 @@ interface WidgetsProps {
     setVelocity: (velocity: number) => void;
 }
 
-
-
 const Widgets = ({ velocity, setVelocity }: WidgetsProps) => {
 
   const [checkedItems, setCheckedItems] = useState([]);
