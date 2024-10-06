@@ -7,7 +7,11 @@ import { PlanetsHandler } from "./PlanetsHandler";
 import { OrbitControls } from "@react-three/drei";
 
 
-const SolarSystem = () => {
+interface SolarSystemProps {
+  velocity: number;
+}
+
+const SolarSystem = ({velocity} : SolarSystemProps) => {
   const orbitRef = useRef(null);
 
   return (
@@ -19,7 +23,7 @@ const SolarSystem = () => {
         // enableRotate={false}
         enableZoom={true}
       />
-      <PlanetsHandler />
+      <PlanetsHandler velocity={velocity}/>
     </Canvas>
   );
 };

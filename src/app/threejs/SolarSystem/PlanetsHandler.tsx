@@ -11,9 +11,11 @@ import { Text } from "@chakra-ui/react";
 import { useFrame } from "@react-three/fiber";
 import { Planet } from "@/app/api/contexts/nasa/planets/domain/planet";
 
+interface PlanetsHandlerProps {
+  velocity: number;
+}
 
-
-export const PlanetsHandler = () => {
+export const PlanetsHandler = ({velocity}: PlanetsHandlerProps) => {
   const [planets, setPlanets] = React.useState<GetPlanetsDto>();
   useEffect(() => {
     fetch("/api/planets")
@@ -31,7 +33,7 @@ export const PlanetsHandler = () => {
       Need to find some way to lerp the lookAt
       */
 
-    planetSelected ? vec.set(focus.x, focus.y, focus.z +11) : vec.set(0, 20, 30);
+    planetSelected ? vec.set(focus.x, focus.y, focus.z +11) : vec.set(0, 20, 300);
     //
     state.camera.position.lerp(vec, step);
     state.camera.lookAt(0, 0, 0);
@@ -57,6 +59,7 @@ export const PlanetsHandler = () => {
               <PlanetGroup
                 key={index + "-planet"}
                 planet={planet}
+                velocity={velocity}
                 zoomToView={zoomToView}
               />
               {

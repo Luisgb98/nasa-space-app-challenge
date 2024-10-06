@@ -8,6 +8,7 @@
     "circumference": 10921.8,
     "rotationPeriod": 655.7,
     "rotationSpeed": 16.65,
+    "translationSpeed": 1.02,
     "planet_name": "Earth"
   },
   {
@@ -19,6 +20,7 @@
     "circumference": 11433.3,
     "rotationPeriod": 42.5,
     "rotationSpeed": 269.6,
+    "translationSpeed": 17.33,
     "planet_name": "Jupiter"
   },
   {
@@ -30,6 +32,7 @@
     "circumference": 9805,
     "rotationPeriod": 85.2,
     "rotationSpeed": 115.7,
+    "translationSpeed": 13.74,
     "planet_name": "Jupiter"
   },
   {
@@ -41,6 +44,7 @@
     "circumference": 16548.2,
     "rotationPeriod": 171.5,
     "rotationSpeed": 96.9,
+    "translationSpeed": 10.91,
     "planet_name": "Jupiter"
   },
   {
@@ -52,6 +56,7 @@
     "circumference": 15102.7,
     "rotationPeriod": 400.8,
     "rotationSpeed": 36,
+    "translationSpeed": 8.21,
     "planet_name": "Jupiter"
   },
   {
@@ -63,6 +68,7 @@
     "circumference": 16195.2,
     "rotationPeriod": 384.3,
     "rotationSpeed": 30.3,
+    "translationSpeed": 5.57,
     "planet_name": "Saturn"
   },
   {
@@ -74,6 +80,7 @@
     "circumference": 1578.4,
     "rotationPeriod": 32.9,
     "rotationSpeed": 1152.1,
+    "translationSpeed": 12.94,
     "planet_name": "Saturn"
   },
   {
@@ -85,6 +92,7 @@
     "circumference": 8487.9,
     "rotationPeriod": 141.6,
     "rotationSpeed": 1445.4,
+    "translationSpeed": 3.86,
     "planet_name": "Neptune"
   },
   {
@@ -96,6 +104,7 @@
     "circumference": 3803.1,
     "rotationPeriod": 153.6,
     "rotationSpeed": 594,
+    "translationSpeed": 0.00023,
     "planet_name": "Pluto"
   }
 ]

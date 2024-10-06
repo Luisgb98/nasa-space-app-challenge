@@ -5,7 +5,7 @@ import { Planet } from "../../domain/planet";
 import { db } from "@/app/api/contexts/kernel/infrastructure/kysely/nasa-db";
 
 @injectable()
-export class KyselyUPlanetRepository implements PlanetsRepository {
+export class KyselyPlanetRepository implements PlanetsRepository {
   async create(planetData: Planet): Promise<void> {
     try {
       const primitiveValues = {

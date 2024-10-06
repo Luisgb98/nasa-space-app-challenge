@@ -14,6 +14,7 @@ interface PlanetPrimitives {
   circumference: number;
   rotationPeriod: number;
   rotationSpeed: number;
+  translationSpeed: number;
   mayorAxis: number;
   eccentricity: number;
   texture: string;
@@ -30,6 +31,7 @@ export class Planet {
   readonly circumference: PlanetNumber;
   readonly rotationPeriod: PlanetNumber;
   readonly rotationSpeed: PlanetNumber;
+  readonly translationSpeed: PlanetNumber;
   readonly mayorAxis: PlanetNumber;
   readonly eccentricity: PlanetNumber;
   readonly texture: PlanetTexture;
@@ -45,6 +47,7 @@ export class Planet {
     circumference: PlanetNumber,
     rotationPeriod: PlanetNumber,
     rotationSpeed: PlanetNumber,
+    translationSpeed: PlanetNumber,
     mayorAxis: PlanetNumber,
     eccentricity: PlanetNumber,
     texture: PlanetTexture,
@@ -59,6 +62,7 @@ export class Planet {
     this.circumference = circumference;
     this.rotationPeriod = rotationPeriod;
     this.rotationSpeed = rotationSpeed;
+    this.translationSpeed = translationSpeed;
     this.mayorAxis = mayorAxis;
     this.eccentricity = eccentricity;
     this.texture = texture;
@@ -75,6 +79,7 @@ export class Planet {
     circumference: PlanetNumber,
     rotationPeriod: PlanetNumber,
     rotationSpeed: PlanetNumber,
+    translationSpeed: PlanetNumber,
     mayorAxis: PlanetNumber,
     eccentricity: PlanetNumber,
     texture: PlanetTexture,
@@ -90,6 +95,7 @@ export class Planet {
       circumference,
       rotationPeriod,
       rotationSpeed,
+      translationSpeed,
       mayorAxis,
       eccentricity,
       texture,
@@ -110,6 +116,7 @@ export class Planet {
       new PlanetNumber(plainData.circumference),
       new PlanetNumber(plainData.rotationPeriod),
       new PlanetNumber(plainData.rotationSpeed),
+      new PlanetNumber(plainData.translationSpeed),
       new PlanetNumber(plainData.mayorAxis),
       new PlanetNumber(plainData.eccentricity),
       new PlanetTexture(plainData.texture),
@@ -128,6 +135,7 @@ export class Planet {
       circumference: this.circumference.value,
       rotationPeriod: this.rotationPeriod.value,
       rotationSpeed: this.rotationSpeed.value,
+      translationSpeed: this.translationSpeed.value,
       mayorAxis: this.mayorAxis.value,
       eccentricity: this.eccentricity.value,
       texture: this.texture.value,

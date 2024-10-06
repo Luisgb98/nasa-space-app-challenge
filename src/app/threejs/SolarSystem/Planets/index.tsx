@@ -84,7 +84,7 @@ interface SphereProps {
   speed: number;
   e: number;
   name: string;
-  zoomToView: (focusRef: React.RefObject<THREE.Object3D>, planet: GetPlanetDto) => void;
+  rotationspeed: number;
 }
 
 export const Sphere = ({
@@ -93,8 +93,7 @@ export const Sphere = ({
   radius,
   speed,
   e,
-  name,
-  zoomToView,
+  name, rotationspeed
 }: SphereProps) => {
   const ref = useRef<THREE.Mesh | null>(null);
   const groupRef = useRef<THREE.Group | null>(null);
@@ -123,7 +122,8 @@ export const Sphere = ({
     // Update planet's position
     if (!clicked)
       groupRef.current.position.set(x, 0, z);
-    ref.current.rotateOnAxis(new Vector3(0, 1, 0).normalize(), 0.05);
+    ref.current.rotateOnAxis(new Vector3(0, 1, 0).normalize(), 0.05 * rotationspeed / 10000);
+
   });
 
   return (
@@ -141,6 +141,18 @@ export const Sphere = ({
           e={0.0565}
         />
       )}
+      {
+        (name == 'Earth') && 
+        <Sphere 
+          texture={'./textures/satellites/moon.jpg'}
+          distance={1.01922}
+          radius={0.17374}
+          speed={0.005}
+          e={0}
+          name={'Moon'}
+          rotationspeed={16.65}
+        />
+      }
       <mesh ref={ref}>
         <sphereGeometry args={[radius, 16, 16]} />
         <meshStandardMaterial map={planetTexture} />
@@ -175,11 +187,13 @@ export function Ring({ texture, distance, speed, e }: RingProps) {
 
 interface PlanetGroupProps {
   planet: GetPlanetDto;
+  velocity: number;
   zoomToView: (focusRef: React.RefObject<THREE.Object3D>, planet: GetPlanetDto) => void;
 }
 
 export const PlanetGroup = ({
   planet,
+  velocity,
   zoomToView,
 }: PlanetGroupProps) => {
   const ref = useRef<THREE.Mesh | null>(null);
@@ -189,18 +203,18 @@ export const PlanetGroup = ({
   const [theta, setTheta] = useState(0);
 
   const [clicked, setClicked] = useState(false);
-
+  const distance = planet.scaledDistance + (69.634 * 1.5);
   useFrame((state, delta) => {
     if (!ref.current) return;
     if (!groupRef.current) return;
 
     groupRef.current.rotation.y += delta;
 
-    const a = planet.scaledDistance;
+    const a = distance;
     const b = a * Math.sqrt(1 - planet.eccentricity * planet.eccentricity);
 
     // Increment the angle over time to simulate the orbit
-    setTheta((prev) => prev + planet.rotationSpeed);
+    setTheta((prev) => prev + planet.translationSpeed * velocity * 0.00005);
 
     // Calculate the new x, z position for the planet
     const x = a * Math.cos(theta);
@@ -222,7 +236,7 @@ export const PlanetGroup = ({
       {planet.name == "Saturn" && (
         <Ring
           texture={"./textures/saturn_ring.jpg"}
-          distance={planet.scaledDistance}
+          distance={distance}
           speed={0.005}
           e={0.0565}
         />

@@ -6,8 +6,6 @@ interface WidgetsProps {
     setVelocity: (velocity: number) => void;
 }
 
-
-
 const Widgets = ({ velocity, setVelocity }: WidgetsProps) => {
 
   const [checkedItems, setCheckedItems] = useState([]);
@@ -19,7 +17,7 @@ const Widgets = ({ velocity, setVelocity }: WidgetsProps) => {
         </Text>
         <Slider
           min={1}
-          max={10}
+          max={20}
           step={1}
           defaultValue={velocity}
           onChange={(v) => setVelocity(v)}
