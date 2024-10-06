@@ -1,4 +1,4 @@
-import { Checkbox, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Stack, Text } from "@chakra-ui/react";
+import { Checkbox, Box, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Stack, Text } from "@chakra-ui/react";
 import { useState } from "react";
 
 interface WidgetsProps {
@@ -21,8 +21,8 @@ const Widgets = ({ velocity, setVelocity,
   togDwarfs, setDwarfs}: WidgetsProps) => {
 
   return (
-    <Flex color="white" width="100%">
-      <Flex flexGrow={1} p={4} flexDir="column">
+    <Flex color="white" width="100%" flexDir={{ base: "column", md: "row" }}>
+      <Flex flexGrow={1} pt={4} px={4} flexDir="column">
         <Text mb={3} fontWeight={900}>
           Bodies velocity
         </Text>
@@ -32,6 +32,7 @@ const Widgets = ({ velocity, setVelocity,
           step={1}
           defaultValue={velocity}
           onChange={(v) => setVelocity(v)}
+          maxWidth={{ base: "100%", md: "300px" }}
         >
           <SliderTrack>
             <SliderFilledTrack />
@@ -39,44 +40,40 @@ const Widgets = ({ velocity, setVelocity,
           <SliderThumb boxSize={6} />
         </Slider>
       </Flex>
-      <Flex flexGrow={1} p={4} flexDir="column">
+      <Flex flexGrow={1} pt={4} px={4} flexDir="column">
         <Text mb={3} fontWeight={900}>
           Show:
         </Text>
-        <Stack pl={6} mt={1} spacing={1}>
-          <Checkbox
-            defaultChecked
-            onChange={(e) =>
-              setOrbits(e.target.checked)
-            }
-          >
-            Toggle Orbits
-          </Checkbox>
-          <Checkbox
-            defaultChecked
-            onChange={(e) =>
-              setPlanets(e.target.checked)
-            }
-          >
-            Toggle Planets
-          </Checkbox>
-          <Checkbox
-            defaultChecked
-            onChange={(e) =>
-              setSatellites(e.target.checked)
-            }
-          >
-            Toggle Satellites
-          </Checkbox>
-          <Checkbox
-            defaultChecked
-            onChange={(e) =>
-              setDwarfs(e.target.checked)
-            }
-          >
-            Toggle Dwarfs
-          </Checkbox>
-        </Stack>
+        <Flex pl={6} mt={1}>
+          <Box width="200px">
+            <Checkbox
+              defaultChecked
+              onChange={(e) => setOrbits(e.target.checked)}
+            >
+              Toggle Orbits
+            </Checkbox>
+            <Checkbox
+              defaultChecked
+              onChange={(e) => setPlanets(e.target.checked)}
+            >
+              Toggle Planets
+            </Checkbox>
+          </Box>
+          <Box width="200px">
+            <Checkbox
+              defaultChecked
+              onChange={(e) => setSatellites(e.target.checked)}
+            >
+              Toggle Satellites
+            </Checkbox>
+            <Checkbox
+              defaultChecked
+              onChange={(e) => setDwarfs(e.target.checked)}
+            >
+              Toggle Dwarfs
+            </Checkbox>
+          </Box>
+        </Flex>
       </Flex>
     </Flex>
   );

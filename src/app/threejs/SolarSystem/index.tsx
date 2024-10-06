@@ -28,33 +28,32 @@ const SolarSystem = ({params} : SolarSystemProps) => {
       {planetSelected && (
         <Box
           position="absolute"
-          top="200px"
+          top={{ base: "200px", md: "130px" }}
           left="30px"
           zIndex={1}
           bgColor="RGB(255, 255, 255, 0.7)"
-          width="40%"
+          width={{ base: "90vw", md: "500px" }}
           borderRadius="15px"
-          height="200px"
           p={5}
         >
           <Flex justifyContent="space-between">
-            <Text fontSize="20px" fontWeight="900">
+            <Text fontSize={{ base: "xl", md: "2xl" }} fontWeight="900">
               {planetSelected?.name}
             </Text>
-            <Text fontSize="20px" fontWeight="600">
+            <Text fontSize={{ base: "sm", md: "lg" }} fontWeight="600">
               Type: {planetSelected?.dwarf ? "Dwarf Planet" : "Planet"}
             </Text>
           </Flex>
-          <Text fontSize="20px" fontWeight="600">
+          <Text fontSize={{ base: "sm", md: "lg" }} fontWeight="600">
             Radius: {planetSelected?.actualRadius} km
           </Text>
-          <Text fontSize="20px" fontWeight="600">
+          <Text fontSize={{ base: "sm", md: "lg" }} fontWeight="600">
             Actual distance from sun: {planetSelected?.actualDistanceFromSun} km
           </Text>
-          <Text fontSize="20px" fontWeight="600">
+          <Text fontSize={{ base: "sm", md: "lg" }} fontWeight="600">
             Axis rotation speed: {planetSelected?.rotationSpeed} km/h
           </Text>
-          <Text fontSize="20px" fontWeight="600">
+          <Text fontSize={{ base: "sm", md: "lg" }} fontWeight="600">
             Velocity around the orbit: {planetSelected?.translationSpeed} km/h
           </Text>
         </Box>
@@ -63,14 +62,15 @@ const SolarSystem = ({params} : SolarSystemProps) => {
       {!planetSelected && (
         <Box
           position="absolute"
-          top="200px"
+          top={{ base: "200px", md: "130px" }}
           left="30px"
           zIndex={1}
           bgColor="RGB(255, 255, 255, 0.8)"
           borderRadius="15px"
+          width={{ base: "90vw", md: "auto" }}
           p={5}
         >
-          <Text fontSize={{base: "md", lg: "xl" }} fontWeight="900">
+          <Text fontSize={{ base: "md", md: "xl" }} fontWeight="900">
             Click on a planet to find out more about it!
           </Text>
         </Box>
