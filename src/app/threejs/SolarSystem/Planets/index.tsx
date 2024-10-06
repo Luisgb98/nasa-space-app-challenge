@@ -1,4 +1,5 @@
-// components/SolarSystem.js
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import React from "react";
@@ -10,7 +11,6 @@ import { GetPlanetDto } from "@/lib/dtos/planets/get/get-planets-dto";
 import { GetSatellitesDto } from "@/lib/dtos/satellite/get/get-satellites-dto";
 import { Satellite } from "@/app/api/contexts/nasa/satellites/domain/satellite";
 import { WidgetParams } from "@/app/page";
-
 
 interface LabelProps {
   position: [number, number, number];
@@ -61,7 +61,7 @@ interface RingProps {
   e: number;
 }
 
-export const Sun = ({ texture, radius}: SunProps) => {
+export const Sun = ({ texture, radius }: SunProps) => {
   const planetTexture = useLoader(TextureLoader, texture);
   return (
     <>
@@ -72,7 +72,7 @@ export const Sun = ({ texture, radius}: SunProps) => {
         <Label position={[0, 0, radius + 30]} text="Sun" />
       </mesh> */}
 
-      <mesh >
+      <mesh>
         <sphereGeometry args={[radius, 16, 16]} />
         <meshStandardMaterial map={planetTexture} />
       </mesh>
@@ -157,9 +157,9 @@ export function Ring({ texture, distance, speed, e }: RingProps) {
 }
 
 interface PlanetGroupProps {
-  planet: GetPlanetDto
-  velocity: number
-  isPlanetSelected: boolean
+  planet: GetPlanetDto;
+  velocity: number;
+  isPlanetSelected: boolean;
   zoomToView: (
     focusRef: React.RefObject<THREE.Object3D>,
     planet: GetPlanetDto
@@ -172,7 +172,7 @@ export const PlanetGroup = ({
   velocity,
   isPlanetSelected,
   zoomToView,
-  params
+  params,
 }: PlanetGroupProps) => {
   const [satellites, setSatellites] = React.useState<GetSatellitesDto | null>();
   useEffect(() => {
@@ -181,10 +181,10 @@ export const PlanetGroup = ({
       .then((data) => setSatellites(data.data));
   }, []);
 
-  const planetSatellites = useMemo(() =>
-    satellites?.filter(
-    (sat) => sat.planet_name == planet.name
-  ), [satellites, planet.name])
+  const planetSatellites = useMemo(
+    () => satellites?.filter((sat) => sat.planet_name == planet.name),
+    [satellites, planet.name]
+  );
 
   const ref = useRef<THREE.Mesh | null>(null);
   const groupRef = useRef<THREE.Group | null>(null);
@@ -230,7 +230,7 @@ export const PlanetGroup = ({
           speed={0.005}
           e={0.0565}
         />
-      )} 
+      )}
       {planetSatellites && params.togSatellites && (
         <>
           {planetSatellites.map((satellite, index) => {
@@ -249,13 +249,13 @@ export const PlanetGroup = ({
           })}
         </>
       )}
-      { !planet.dwarf && (
+      {!planet.dwarf && (
         <mesh ref={ref}>
           <sphereGeometry args={[planet.scaledRadius, 16, 16]} />
           <meshStandardMaterial map={planetTexture} />
         </mesh>
       )}
-      { planet.dwarf && params.togDwarfs && (
+      {planet.dwarf && params.togDwarfs && (
         <mesh ref={ref}>
           <sphereGeometry args={[planet.scaledRadius, 16, 16]} />
           <meshStandardMaterial map={planetTexture} />

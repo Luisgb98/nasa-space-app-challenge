@@ -33,10 +33,6 @@ import signin from "@/app/auth/signin/sign-in";
 import signup from "@/app/auth/signup/sign-up";
 import signout from "@/app/auth/signout/sign-out";
 
-interface Props {
-  children: React.ReactNode;
-}
-
 interface NavProps {
   user: GetUserResponseDto | null;
 }
@@ -79,8 +75,9 @@ export default function Nav(props: NavProps) {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Text fontWeight={900} fontSize="20px">AstrON</Text>
-
+            <Text fontWeight={900} fontSize="20px">
+              AstrON
+            </Text>
           </HStack>
           <Flex alignItems={"center"}>
             <Menu>
@@ -115,10 +112,7 @@ export default function Nav(props: NavProps) {
         </Flex>
 
         {/* Mobile Menu */}
-        {isOpen ? (
-          <Box pb={4} display={{ md: "none" }}>
-          </Box>
-        ) : null}
+        {isOpen ? <Box pb={4} display={{ md: "none" }}></Box> : null}
       </Box>
 
       {/* Sign In Modal */}

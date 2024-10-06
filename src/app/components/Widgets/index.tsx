@@ -1,25 +1,40 @@
-import { Checkbox, Box, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Stack, Text } from "@chakra-ui/react";
-import { useState } from "react";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import {
+  Checkbox,
+  Box,
+  Flex,
+  Slider,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderTrack,
+  Text,
+} from "@chakra-ui/react";
 
 interface WidgetsProps {
-    velocity: number;
-    setVelocity: (velocity: number) => void;
-    togOrbits: boolean;
-    setOrbits: (togOrbits: boolean) => void;
-    togPlanets: boolean;
-    setPlanets: (togPlanets: boolean) => void;
-    togSatellites: boolean;
-    setSatellites: (togSatellites: boolean) => void;
-    togDwarfs: boolean;
-    setDwarfs: (togDwarfs: boolean) => void;
+  velocity: number;
+  setVelocity: (velocity: number) => void;
+  togOrbits: boolean;
+  setOrbits: (togOrbits: boolean) => void;
+  togPlanets: boolean;
+  setPlanets: (togPlanets: boolean) => void;
+  togSatellites: boolean;
+  setSatellites: (togSatellites: boolean) => void;
+  togDwarfs: boolean;
+  setDwarfs: (togDwarfs: boolean) => void;
 }
 
-const Widgets = ({ velocity, setVelocity, 
-  togPlanets, setPlanets,
-  togOrbits, setOrbits,
-  togSatellites, setSatellites,
-  togDwarfs, setDwarfs}: WidgetsProps) => {
-
+const Widgets = ({
+  velocity,
+  setVelocity,
+  togPlanets,
+  setPlanets,
+  togOrbits,
+  setOrbits,
+  togSatellites,
+  setSatellites,
+  togDwarfs,
+  setDwarfs,
+}: WidgetsProps) => {
   return (
     <Flex color="white" width="100%" flexDir={{ base: "column", md: "row" }}>
       <Flex flexGrow={1} pt={4} px={8} flexDir="column">
@@ -79,4 +94,4 @@ const Widgets = ({ velocity, setVelocity,
   );
 };
 
-export default Widgets
+export default Widgets;

@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 import { Bounds, useBounds } from "@react-three/drei";
 import * as THREE from "three";
 import { sun } from "./_helper";

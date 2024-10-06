@@ -1,4 +1,5 @@
 "use client";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 import { useRef, useState } from "react";
 import { Vector3 } from "three";
@@ -12,12 +13,11 @@ import {
   GetPlanetsDto,
 } from "@/lib/dtos/planets/get/get-planets-dto";
 
-
 interface SolarSystemProps {
   params: WidgetParams;
 }
 
-const SolarSystem = ({params} : SolarSystemProps) => {
+const SolarSystem = ({ params }: SolarSystemProps) => {
   const orbitRef = useRef(null);
   const [planetSelected, setPlanetSelected] = useState<GetPlanetDto | null>(
     null
