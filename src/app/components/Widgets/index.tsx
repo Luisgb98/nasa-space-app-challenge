@@ -37,6 +37,14 @@ const Widgets = ({
   togDwarfs,
   setDwarfs,
 }: WidgetsProps) => {
+  console.log(
+    "WidgetsProps",
+    velocity,
+    togPlanets,
+    togOrbits,
+    togSatellites,
+    togDwarfs
+  );
   return (
     <form action={saveConfig}>
       <Flex color="white" width="100%" flexDir={{ base: "column", md: "row" }}>
@@ -50,6 +58,7 @@ const Widgets = ({
             step={1}
             defaultValue={velocity}
             onChange={(v) => setVelocity(v)}
+            name="velocity"
             maxWidth={{ base: "100%", md: "300px" }}
           >
             <SliderTrack>
@@ -65,14 +74,14 @@ const Widgets = ({
           <Flex pl={6} mt={1}>
             <Box width="200px">
               <Checkbox
-                defaultChecked
+                defaultChecked={togOrbits}
                 onChange={(e) => setOrbits(e.target.checked)}
                 name="orbits"
               >
                 Toggle Orbits
               </Checkbox>
               <Checkbox
-                defaultChecked
+                defaultChecked={togPlanets}
                 onChange={(e) => setPlanets(e.target.checked)}
                 name="planets"
               >
@@ -81,14 +90,14 @@ const Widgets = ({
             </Box>
             <Box width="200px">
               <Checkbox
-                defaultChecked
+                defaultChecked={togSatellites}
                 onChange={(e) => setSatellites(e.target.checked)}
                 name="satellites"
               >
                 Toggle Satellites
               </Checkbox>
               <Checkbox
-                defaultChecked
+                defaultChecked={togDwarfs}
                 onChange={(e) => setDwarfs(e.target.checked)}
                 name="dwarfs"
               >

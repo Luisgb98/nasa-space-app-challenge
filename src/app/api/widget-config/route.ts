@@ -19,7 +19,7 @@ export async function GET() {
   const widgetConfigFinder =
     container.get<WidgetConfigFinder>(WidgetConfigFinder);
   const widgetConfig = await widgetConfigFinder.execute(result.user.id);
-  console.log(widgetConfig);
+  console.log("w", widgetConfig);
   return NextResponse.json({
     status: 200,
     data: widgetConfig,
