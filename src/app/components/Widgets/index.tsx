@@ -1,3 +1,4 @@
+import saveConfig from "@/app/api/widget-config/save-config";
 import {
   Button,
   Checkbox,
@@ -36,7 +37,7 @@ const Widgets = ({
   setDwarfs,
 }: WidgetsProps) => {
   return (
-    <form>
+    <form action={saveConfig}>
       <Flex color="white" width="100%">
         <Flex flexGrow={1} p={4} flexDir="column">
           <Text mb={3} fontWeight={900}>
@@ -62,28 +63,28 @@ const Widgets = ({
           </Text>
           <Stack pl={6} mt={1} spacing={1}>
             <Checkbox
-              defaultChecked
+              defaultChecked={togOrbits}
               onChange={(e) => setOrbits(e.target.checked)}
               name="orbits"
             >
               Toggle Orbits
             </Checkbox>
             <Checkbox
-              defaultChecked
+              defaultChecked={togPlanets}
               onChange={(e) => setPlanets(e.target.checked)}
               name="planets"
             >
               Toggle Planets
             </Checkbox>
             <Checkbox
-              defaultChecked
+              defaultChecked={togSatellites}
               onChange={(e) => setSatellites(e.target.checked)}
               name="satellites"
             >
               Toggle Satellites
             </Checkbox>
             <Checkbox
-              defaultChecked
+              defaultChecked={togDwarfs}
               onChange={(e) => setDwarfs(e.target.checked)}
               name="dwarfs"
             >
@@ -100,9 +101,9 @@ const Widgets = ({
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               className="icon icon-tabler icons-tabler-outline icon-tabler-device-floppy"
             >
               <path stroke="none" d="M0 0h24v24H0z" fill="none" />

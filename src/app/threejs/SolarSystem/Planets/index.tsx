@@ -170,7 +170,7 @@ export const PlanetGroup = ({
   planet,
   velocity,
   zoomToView,
-  params
+  params,
 }: PlanetGroupProps) => {
   const [satellites, setSatellites] = React.useState<GetSatellitesDto | null>();
   useEffect(() => {
@@ -179,10 +179,10 @@ export const PlanetGroup = ({
       .then((data) => setSatellites(data.data));
   }, []);
 
-  const planetSatellites = useMemo(() =>
-    satellites?.filter(
-    (sat) => sat.planet_name == planet.name
-  ), [satellites, planet.name])
+  const planetSatellites = useMemo(
+    () => satellites?.filter((sat) => sat.planet_name == planet.name),
+    [satellites, planet.name]
+  );
 
   const ref = useRef<THREE.Mesh | null>(null);
   const groupRef = useRef<THREE.Group | null>(null);
@@ -228,11 +228,10 @@ export const PlanetGroup = ({
           speed={0.005}
           e={0.0565}
         />
-      )} 
+      )}
       {planetSatellites && params.togSatellites && (
         <>
           {planetSatellites.map((satellite, index) => {
-            console.log("Hola", satellite.name);
             return (
               <Sphere
                 key={index + "-satellite"}
@@ -248,13 +247,13 @@ export const PlanetGroup = ({
           })}
         </>
       )}
-      { !planet.dwarf && (
+      {!planet.dwarf && (
         <mesh ref={ref}>
           <sphereGeometry args={[planet.scaledRadius, 16, 16]} />
           <meshStandardMaterial map={planetTexture} />
         </mesh>
       )}
-      { planet.dwarf && params.togDwarfs && (
+      {planet.dwarf && params.togDwarfs && (
         <mesh ref={ref}>
           <sphereGeometry args={[planet.scaledRadius, 16, 16]} />
           <meshStandardMaterial map={planetTexture} />

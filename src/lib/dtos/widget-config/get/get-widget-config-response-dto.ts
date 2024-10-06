@@ -1,11 +1,11 @@
 import { z } from "zod";
 
 export const GetWidgetConfigResponseDtoSchema = z.object({
-  velocity: z.string(),
-  orbits: z.string(),
-  planets: z.string(),
-  satellites: z.string(),
-  dwarfs: z.string(),
+  velocity: z.number(),
+  orbits: z.boolean(),
+  planets: z.boolean(),
+  satellites: z.boolean(),
+  dwarfs: z.boolean(),
   user_id: z.string(),
 });
 

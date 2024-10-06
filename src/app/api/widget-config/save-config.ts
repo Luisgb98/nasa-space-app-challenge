@@ -1,8 +1,3 @@
-import { container } from "@/app/inversify.config";
-import { WidgetConfigUpsert } from "../contexts/nasa/widget-config/application/widget-config-upsert/widget-config-upsert";
-import { CreateWidgetConfigDtoSchema } from "@/lib/dtos/widget-config/create/create-widget-config-dto";
-import { validateRequest } from "@/app/auth/validate-request/validate-request";
-
 async function saveConfig(formData: FormData): Promise<void> {
   const velocity = formData.get("velocity");
   const orbits = formData.get("orbits");
@@ -10,22 +5,22 @@ async function saveConfig(formData: FormData): Promise<void> {
   const satellites = formData.get("satellites");
   const dwarfs = formData.get("dwarfs");
 
-  const result = await validateRequest();
-  if (!result.user) {
-    return;
-  }
+  console.log("Saving config...");
 
-  const widgetUpsert = container.get<WidgetConfigUpsert>(WidgetConfigUpsert);
-  const widgetConfig = CreateWidgetConfigDtoSchema.parse({
-    user_id: result.user.id,
-    velocity: velocity as string,
-    orbits: orbits as string,
-    planets: planets as string,
-    satellites: satellites as string,
-    dwarfs: dwarfs as string,
+  const body = JSON.stringify({
+    velocity: velocity,
+    orbits: orbits === "on" ? true : false,
+    planets: planets === "on" ? true : false,
+    satellites: satellites === "on" ? true : false,
+    dwarfs: dwarfs === "on" ? true : false,
   });
 
-  await widgetUpsert.execute(widgetConfig);
+  console.log(body);
+
+  await fetch("/api/widget-config", {
+    method: "POST",
+    body: body,
+  });
 }
 
 export default saveConfig;
