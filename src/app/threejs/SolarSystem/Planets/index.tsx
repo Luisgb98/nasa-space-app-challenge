@@ -6,10 +6,41 @@ import { TextureLoader, Vector3 } from "three";
 
 import * as THREE from "three";
 import { Html } from "@react-three/drei";
-import { Planet } from "@/app/api/contexts/nasa/planets/domain/planet";
 import { GetPlanetDto } from "@/lib/dtos/planets/get/get-planets-dto";
 import { GetSatellitesDto } from "@/lib/dtos/satellite/get/get-satellites-dto";
 import { Satellite } from "@/app/api/contexts/nasa/satellites/domain/satellite";
+import { WidgetParams } from "@/app/page";
+
+interface PlanetCard {
+  planet: GetPlanetDto
+}
+
+export const PlanetCard = () => {
+  return (
+    <Html
+      style={{
+        position: "fixed",
+        top: "10px",
+        right: "10px",
+        zIndex: 1,
+      }}
+    >
+      <div
+        style={{
+          background: "rgba(255, 255, 255, 0.8)",
+          padding: "8px 12px",
+          borderRadius: "12px",
+          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
+          fontFamily: "Arial, sans-serif",
+          fontSize: "14px",
+          color: "#333",
+        }}
+      >
+        {"Hola"}
+      </div>
+    </Html>
+  );
+};
 
 interface LabelProps {
   position: [number, number, number];
@@ -60,7 +91,7 @@ interface RingProps {
   e: number;
 }
 
-export const Sun = ({ texture, radius }: SunProps) => {
+export const Sun = ({ texture, radius}: SunProps) => {
   const planetTexture = useLoader(TextureLoader, texture);
   return (
     <>
@@ -71,7 +102,7 @@ export const Sun = ({ texture, radius }: SunProps) => {
         <Label position={[0, 0, radius + 30]} text="Sun" />
       </mesh> */}
 
-      <mesh>
+      <mesh >
         <sphereGeometry args={[radius, 16, 16]} />
         <meshStandardMaterial map={planetTexture} />
       </mesh>
@@ -162,7 +193,8 @@ interface PlanetGroupProps {
   zoomToView: (
     focusRef: React.RefObject<THREE.Object3D>,
     planet: GetPlanetDto
-  ) => void
+  ) => void;
+  params: WidgetParams;
 }
 
 export const PlanetGroup = ({
@@ -170,6 +202,7 @@ export const PlanetGroup = ({
   velocity,
   isPlanetSelected,
   zoomToView,
+  params
 }: PlanetGroupProps) => {
   const [satellites, setSatellites] = React.useState<GetSatellitesDto | null>();
   useEffect(() => {
@@ -228,14 +261,13 @@ export const PlanetGroup = ({
           e={0.0565}
         />
       )} 
-      {planetSatellites && (
+      {planetSatellites && params.togSatellites && (
         <>
           {planetSatellites.map((satellite, index) => {
-            console.log("Hola", satellite.name);
             return (
               <Sphere
                 key={index + "-satellite"}
-                texture={"./textures/satellites/moon.jpg"}
+                texture={satellite.texture}
                 distance={satellite.scaledDistance + planet.scaledRadius * 1.5}
                 radius={satellite.scaledRadius}
                 speed={0.005}
@@ -247,10 +279,18 @@ export const PlanetGroup = ({
           })}
         </>
       )}
-      <mesh ref={ref}>
-        <sphereGeometry args={[planet.scaledRadius, 16, 16]} />
-        <meshStandardMaterial map={planetTexture} />
-      </mesh>
+      { !planet.dwarf && (
+        <mesh ref={ref}>
+          <sphereGeometry args={[planet.scaledRadius, 16, 16]} />
+          <meshStandardMaterial map={planetTexture} />
+        </mesh>
+      )}
+      { planet.dwarf && params.togDwarfs && (
+        <mesh ref={ref}>
+          <sphereGeometry args={[planet.scaledRadius, 16, 16]} />
+          <meshStandardMaterial map={planetTexture} />
+        </mesh>
+      )}
     </group>
   );
 };

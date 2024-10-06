@@ -101,7 +101,7 @@ export default function Nav(props: NavProps) {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Text>AstrON</Text>
+            <Text fontWeight={900} fontSize="20px">AstrON</Text>
             <HStack
               as={"nav"}
               spacing={4}
