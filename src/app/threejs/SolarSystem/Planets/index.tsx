@@ -156,17 +156,19 @@ export function Ring({ texture, distance, speed, e }: RingProps) {
 }
 
 interface PlanetGroupProps {
-  planet: GetPlanetDto;
-  velocity: number;
+  planet: GetPlanetDto
+  velocity: number
+  isPlanetSelected: boolean
   zoomToView: (
     focusRef: React.RefObject<THREE.Object3D>,
     planet: GetPlanetDto
-  ) => void;
+  ) => void
 }
 
 export const PlanetGroup = ({
   planet,
   velocity,
+  isPlanetSelected,
   zoomToView,
 }: PlanetGroupProps) => {
   const [satellites, setSatellites] = React.useState<GetSatellitesDto | null>();
@@ -206,7 +208,7 @@ export const PlanetGroup = ({
     const z = b * Math.sin(theta);
 
     // Update planet's position
-    if (!clicked) groupRef.current.position.set(x, 0, z);
+    if (!isPlanetSelected) groupRef.current.position.set(x, 0, z);
     ref.current.rotateOnAxis(new Vector3(0, 1, 0).normalize(), 0.05);
   });
 
@@ -226,7 +228,7 @@ export const PlanetGroup = ({
           e={0.0565}
         />
       )} 
-      {/* {planetSatellites && (
+      {planetSatellites && (
         <>
           {planetSatellites.map((satellite, index) => {
             console.log("Hola", satellite.name);
@@ -244,7 +246,7 @@ export const PlanetGroup = ({
             );
           })}
         </>
-      )} */}
+      )}
       <mesh ref={ref}>
         <sphereGeometry args={[planet.scaledRadius, 16, 16]} />
         <meshStandardMaterial map={planetTexture} />

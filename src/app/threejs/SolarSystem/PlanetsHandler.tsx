@@ -26,6 +26,7 @@ export const PlanetsHandler = ({velocity}: PlanetsHandlerProps) => {
   }, []);
   
   const [planetSelected, setPlanetSelected] = useState<GetPlanetDto | null>(null);
+  
   const [focus, setFocus] = useState<THREE.Vector3>(new THREE.Vector3(0, 20, 300));
   const vec = new THREE.Vector3(0, 20, 300);
   /* console.log("camara position", camera.position);
@@ -58,6 +59,8 @@ export const PlanetsHandler = ({velocity}: PlanetsHandlerProps) => {
       <Sun texture={sun.texture} radius={sun.radius} />
       <group>
         {planets?.map((planet, index) => {
+          const isPlanetSelected =
+            planetSelected?.name == planet.name ? true : false;
           return (
             <>
               <PlanetGroup
@@ -65,6 +68,7 @@ export const PlanetsHandler = ({velocity}: PlanetsHandlerProps) => {
                 planet={planet}
                 velocity={velocity}
                 zoomToView={zoomToView}
+                isPlanetSelected={isPlanetSelected}
               />
               {
                 <Ellipse
