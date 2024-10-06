@@ -4,14 +4,14 @@
   "private": true,
   "prisma": {
     "schema": "src/app/api/contexts/kernel/infrastructure/prisma/schema.prisma",
-    "seed": "tsx src/app/api/contexts/kernel/infrastructure/prisma/seeders/seed.ts"
+    "seed": "npx tsx src/app/api/contexts/kernel/infrastructure/prisma/seeders/seed.ts"
   },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "vercel-build": "prisma migrate deploy && prisma db seed && next build"
+    "vercel-build": "prisma generate && prisma migrate deploy && prisma db seed && next build"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.2.4",
