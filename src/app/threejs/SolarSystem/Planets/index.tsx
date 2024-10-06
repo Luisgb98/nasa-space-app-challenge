@@ -1,52 +1,52 @@
 // components/SolarSystem.js
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useFrame, useLoader, useThree } from "@react-three/fiber";
+import { useRef, useState } from "react";
+import { useFrame, useLoader } from "@react-three/fiber";
 import React from "react";
 import { TextureLoader, Vector3 } from "three";
 
 import * as THREE from "three";
-import { Html } from "@react-three/drei";
-import { Planet } from "@/app/api/contexts/nasa/planets/domain/planet";
+// import { Html } from "@react-three/drei";
+// import { Planet } from "@/app/api/contexts/nasa/planets/domain/planet";
 import { GetPlanetDto } from "@/lib/dtos/planets/get/get-planets-dto";
-import { GetSatellitesDto } from "@/lib/dtos/satellite/get/get-satellites-dto";
-import { Satellite } from "@/app/api/contexts/nasa/satellites/domain/satellite";
+// import { GetSatellitesDto } from "@/lib/dtos/satellite/get/get-satellites-dto";
+// import { Satellite } from "@/app/api/contexts/nasa/satellites/domain/satellite";
 
-interface LabelProps {
-  position: [number, number, number];
-  text: string;
-}
+// interface LabelProps {
+//   position: [number, number, number];
+//   text: string;
+// }
 
-function Label({ position, text }: LabelProps) {
-  // const { camera } = useThree();
-  //   const [zoom, setZoom] = useState(camera.zoom); // Initialize zoom state
+// function Label({ position, text }: LabelProps) {
+// const { camera } = useThree();
+//   const [zoom, setZoom] = useState(camera.zoom); // Initialize zoom state
 
-  //   camera.zoom = 2;
-  //   useFrame(() => {
-  //     if (camera.zoom !== zoom) {
-  //       setZoom(camera.zoom); // Update the state when zoom changes
-  //     }
-  //   });
+//   camera.zoom = 2;
+//   useFrame(() => {
+//     if (camera.zoom !== zoom) {
+//       setZoom(camera.zoom); // Update the state when zoom changes
+//     }
+//   });
 
-  // const fontSize = 14 / zoom;
+// const fontSize = 14 / zoom;
 
-  return (
-    <Html position={position} center>
-      <div
-        style={{
-          background: "rgba(255, 255, 255, 0.8)",
-          padding: "8px 12px",
-          borderRadius: "12px",
-          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
-          fontFamily: "Arial, sans-serif",
-          fontSize: "14px",
-          color: "#333",
-        }}
-      >
-        {text}
-      </div>
-    </Html>
-  );
-}
+//   return (
+//     <Html position={position} center>
+//       <div
+//         style={{
+//           background: "rgba(255, 255, 255, 0.8)",
+//           padding: "8px 12px",
+//           borderRadius: "12px",
+//           boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
+//           fontFamily: "Arial, sans-serif",
+//           fontSize: "14px",
+//           color: "#333",
+//         }}
+//       >
+//         {text}
+//       </div>
+//     </Html>
+//   );
+// }
 
 interface SunProps {
   texture: string;
@@ -95,7 +95,7 @@ export const Sphere = ({
   radius,
   speed,
   e,
-  name,
+  //   name,
   rotationspeed,
 }: SphereProps) => {
   const ref = useRef<THREE.Mesh | null>(null);
@@ -133,11 +133,14 @@ export const Sphere = ({
   );
 };
 
-export function Ring({ texture, distance, speed, e }: RingProps) {
+export function Ring({
+  texture,
+}: // distance, speed, e
+RingProps) {
   const ref = useRef<THREE.Mesh | null>(null);
   const ringTexture = useLoader(TextureLoader, texture);
 
-  useFrame((state, delta) => {
+  useFrame(() => {
     if (!ref.current) return;
 
     ref.current.rotation.set(Math.PI / 2.2, 0, 0);
@@ -169,17 +172,17 @@ export const PlanetGroup = ({
   velocity,
   zoomToView,
 }: PlanetGroupProps) => {
-  const [satellites, setSatellites] = React.useState<GetSatellitesDto | null>();
-  useEffect(() => {
-    fetch("/api/satellites")
-      .then((res) => res.json())
-      .then((data) => setSatellites(data.data));
-  }, []);
+  //   const [satellites, setSatellites] = React.useState<GetSatellitesDto | null>();
+  //   useEffect(() => {
+  //     fetch("/api/satellites")
+  //       .then((res) => res.json())
+  //       .then((data) => setSatellites(data.data));
+  //   }, []);
 
-  const planetSatellites = useMemo(() =>
-    satellites?.filter(
-    (sat) => sat.planet_name == planet.name
-  ), [satellites, planet.name])
+  //   const planetSatellites = useMemo(
+  //     () => satellites?.filter((sat) => sat.planet_name == planet.name),
+  //     [satellites, planet.name]
+  //   );
 
   const ref = useRef<THREE.Mesh | null>(null);
   const groupRef = useRef<THREE.Group | null>(null);
@@ -225,7 +228,7 @@ export const PlanetGroup = ({
           speed={0.005}
           e={0.0565}
         />
-      )} 
+      )}
       {/* {planetSatellites && (
         <>
           {planetSatellites.map((satellite, index) => {

@@ -1,14 +1,20 @@
-import { Checkbox, Flex, Slider, SliderFilledTrack, SliderThumb, SliderTrack, Stack, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import {
+  Checkbox,
+  Flex,
+  Slider,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderTrack,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 
 interface WidgetsProps {
-    velocity: number;
-    setVelocity: (velocity: number) => void;
+  velocity: number;
+  setVelocity: (velocity: number) => void;
 }
 
 const Widgets = ({ velocity, setVelocity }: WidgetsProps) => {
-
-  const [checkedItems, setCheckedItems] = useState([]);
   return (
     <Flex color="white" width="100%">
       <Flex flexGrow={1} p={4} flexDir="column">
@@ -55,4 +61,4 @@ const Widgets = ({ velocity, setVelocity }: WidgetsProps) => {
   );
 };
 
-export default Widgets
+export default Widgets;
