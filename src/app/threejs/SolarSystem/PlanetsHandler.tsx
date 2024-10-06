@@ -33,10 +33,10 @@ export const PlanetsHandler = ({velocity}: PlanetsHandlerProps) => {
       Need to find some way to lerp the lookAt
       */
 
-    planetSelected ? vec.set(focus.x, focus.y, focus.z +11) : vec.set(0, 20, 300);
+    planetSelected ? vec.set(focus.x, focus.y, focus.z + (planetSelected.scaledRadius * 4)) : vec.set(0, 20, 300);
     //
     state.camera.position.lerp(vec, step);
-    state.camera.lookAt(0, 0, 0);
+    state.camera.lookAt(vec);
     // Update to new position/lookAt
     state.camera.updateProjectionMatrix();
   });

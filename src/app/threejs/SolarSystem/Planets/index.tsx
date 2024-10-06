@@ -65,9 +65,9 @@ export const Sun = ({ texture, radius }: SunProps) => {
       {/*  <Text scale={15} position={[0, radius + 15, 0]}>
         Sun
       </Text> */}
-      <mesh>
-        <Label position={[0, radius + 15, 0]} text="Sun"/>
-      </mesh>
+      {/* <mesh>
+        <Label position={[0, 0, radius + 30]} text="Sun" />
+      </mesh> */}
 
       <mesh>
         <sphereGeometry args={[radius, 16, 16]} />
