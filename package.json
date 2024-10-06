@@ -4,7 +4,7 @@
   "private": true,
   "prisma": {
     "schema": "src/app/api/contexts/kernel/infrastructure/prisma/schema.prisma",
-    "seed": "npx tsx src/app/api/contexts/kernel/infrastructure/prisma/seeders/seed.ts"
+    "seed": "tsx src/app/api/contexts/kernel/infrastructure/prisma/seeders/seed.ts"
   },
   "scripts": {
     "dev": "next dev",
