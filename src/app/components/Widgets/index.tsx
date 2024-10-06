@@ -19,7 +19,7 @@ const Widgets = ({ velocity, setVelocity }: WidgetsProps) => {
         </Text>
         <Slider
           min={1}
-          max={10}
+          max={20}
           step={1}
           defaultValue={velocity}
           onChange={(v) => setVelocity(v)}

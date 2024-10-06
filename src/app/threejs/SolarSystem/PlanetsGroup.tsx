@@ -8,7 +8,7 @@ import { Ring } from "./Planets";
 import { GetPlanetsDto } from "@/lib/dtos/planets/get/get-planets-dto";
 import { Text } from "@chakra-ui/react";
 
-export const PlanetsGroup = () => {
+export const PlanetsGroup = ({velocity}) => {
   const [planets, setPlanets] = React.useState<GetPlanetsDto>();
   useEffect(() => {
     fetch("/api/planets")
@@ -30,7 +30,7 @@ export const PlanetsGroup = () => {
                   texture={planet.texture}
                   radius={planet.scaledRadius}
                   distance={planet.scaledDistance + (sun.radius * 1.5)}
-                  speed={0.0005}
+                  speed={velocity * 0.001}
                   e={planet.eccentricity}
                   name={planet.name}
                   rotationspeed={planet.rotationSpeed}
