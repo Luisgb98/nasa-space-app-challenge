@@ -10,6 +10,7 @@ import { Planet } from "@/app/api/contexts/nasa/planets/domain/planet";
 import { GetPlanetDto } from "@/lib/dtos/planets/get/get-planets-dto";
 import { GetSatellitesDto } from "@/lib/dtos/satellite/get/get-satellites-dto";
 import { Satellite } from "@/app/api/contexts/nasa/satellites/domain/satellite";
+import { WidgetParams } from "@/app/page";
 
 interface LabelProps {
   position: [number, number, number];
@@ -162,12 +163,14 @@ interface PlanetGroupProps {
     focusRef: React.RefObject<THREE.Object3D>,
     planet: GetPlanetDto
   ) => void;
+  params: WidgetParams;
 }
 
 export const PlanetGroup = ({
   planet,
   velocity,
   zoomToView,
+  params
 }: PlanetGroupProps) => {
   const [satellites, setSatellites] = React.useState<GetSatellitesDto | null>();
   useEffect(() => {
@@ -226,14 +229,14 @@ export const PlanetGroup = ({
           e={0.0565}
         />
       )} 
-      {/* {planetSatellites && (
+      {planetSatellites && params.togSatellites && (
         <>
           {planetSatellites.map((satellite, index) => {
             console.log("Hola", satellite.name);
             return (
               <Sphere
                 key={index + "-satellite"}
-                texture={"./textures/satellites/moon.jpg"}
+                texture={satellite.texture}
                 distance={satellite.scaledDistance + planet.scaledRadius * 1.5}
                 radius={satellite.scaledRadius}
                 speed={0.005}
@@ -244,11 +247,19 @@ export const PlanetGroup = ({
             );
           })}
         </>
-      )} */}
-      <mesh ref={ref}>
-        <sphereGeometry args={[planet.scaledRadius, 16, 16]} />
-        <meshStandardMaterial map={planetTexture} />
-      </mesh>
+      )}
+      { !planet.dwarf && (
+        <mesh ref={ref}>
+          <sphereGeometry args={[planet.scaledRadius, 16, 16]} />
+          <meshStandardMaterial map={planetTexture} />
+        </mesh>
+      )}
+      { planet.dwarf && params.togDwarfs && (
+        <mesh ref={ref}>
+          <sphereGeometry args={[planet.scaledRadius, 16, 16]} />
+          <meshStandardMaterial map={planetTexture} />
+        </mesh>
+      )}
     </group>
   );
 };

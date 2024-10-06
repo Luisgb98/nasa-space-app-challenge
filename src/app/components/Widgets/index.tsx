@@ -4,13 +4,21 @@ import { useState } from "react";
 interface WidgetsProps {
     velocity: number;
     setVelocity: (velocity: number) => void;
+    togOrbits: boolean;
+    setOrbits: (togOrbits: boolean) => void;
     togPlanets: boolean;
     setPlanets: (togPlanets: boolean) => void;
+    togSatellites: boolean;
+    setSatellites: (togSatellites: boolean) => void;
+    togDwarfs: boolean;
+    setDwarfs: (togDwarfs: boolean) => void;
 }
 
 const Widgets = ({ velocity, setVelocity, 
   togPlanets, setPlanets,
-   }: WidgetsProps) => {
+  togOrbits, setOrbits,
+  togSatellites, setSatellites,
+  togDwarfs, setDwarfs}: WidgetsProps) => {
 
   return (
     <Flex color="white" width="100%">
@@ -38,9 +46,9 @@ const Widgets = ({ velocity, setVelocity,
         <Stack pl={6} mt={1} spacing={1}>
           <Checkbox
             defaultChecked
-            /* onChange={(e) =>
-              setCheckedItems(check)
-            } */
+            onChange={(e) =>
+              setOrbits(e.target.checked)
+            }
           >
             Toggle Orbits
           </Checkbox>
@@ -51,6 +59,22 @@ const Widgets = ({ velocity, setVelocity,
             }
           >
             Toggle Planets
+          </Checkbox>
+          <Checkbox
+            defaultChecked
+            onChange={(e) =>
+              setSatellites(e.target.checked)
+            }
+          >
+            Toggle Satellites
+          </Checkbox>
+          <Checkbox
+            defaultChecked
+            onChange={(e) =>
+              setDwarfs(e.target.checked)
+            }
+          >
+            Toggle Dwarfs
           </Checkbox>
         </Stack>
       </Flex>

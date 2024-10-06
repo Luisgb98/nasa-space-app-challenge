@@ -67,16 +67,18 @@ export const PlanetsHandler = ({params}: PlanetsHandlerProps) => {
                 planet={planet}
                 velocity={params.velocity}
                 zoomToView={zoomToView}
+                params={params}
               />
             )}
               {
+                params.togOrbits && (
                 <Ellipse
                   key={index + "-ellipse"}
                   distance={planet.scaledDistance + sun.radius * 1.5}
                   e={planet.eccentricity}
                   color={planet.dwarf ? "#7E60BF" : "#229799"}
                 />
-              }
+            )}
             </>
           );
         })}
