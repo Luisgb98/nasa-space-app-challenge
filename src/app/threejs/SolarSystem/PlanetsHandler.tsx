@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Bounds } from "@react-three/drei";
 import * as THREE from "three";
 import { sun } from "./_helper";
