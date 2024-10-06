@@ -32,7 +32,7 @@ export class UserVerifier {
     }
 
     return {
-      userId: user.userId.value,
+      userId: user.id.value,
     };
   }
 }
