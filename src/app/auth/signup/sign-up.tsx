@@ -3,22 +3,15 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { lucia } from "@/app/lib/lucia/lucia";
+import { lucia } from "@/lib/lucia/lucia";
 import { container } from "@/app/inversify.config";
 import { UserCreator } from "@/app/api/contexts/auth/users/application/user-creator/user-creator";
 import { CreateUserDtoSchema } from "@/lib/dtos/users/create/create-user-dto";
 
 async function signup(formData: FormData): Promise<void> {
   const email = formData.get("email");
-  if (typeof email !== "string" || !/^[a-z0-9_-]+$/.test(email)) {
-    return;
-  }
   const password = formData.get("password");
-  if (
-    typeof password !== "string" ||
-    password.length < 6 ||
-    password.length > 16
-  ) {
+  if (!email || !password) {
     return;
   }
 

@@ -46,6 +46,7 @@ export type Stars = {
     circumference: number;
     rotationPeriod: number;
     rotationSpeed: number;
+    texture: string;
 };
 export type Users = {
     id: Generated<number>;

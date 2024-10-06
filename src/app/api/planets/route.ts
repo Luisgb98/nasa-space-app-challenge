@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+
 import { container } from "@/app/inversify.config";
 import { PlanetsSearcher } from "../contexts/nasa/planets/application/planets-searcher/planets-searcher";
 
