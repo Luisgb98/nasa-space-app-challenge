@@ -25,6 +25,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/pg": "^8.11.10",
     "@types/three": "^0.169.0",
+    "@vercel/postgres": "^0.10.0",
     "bcrypt": "^5.1.1",
     "framer-motion": "^11.11.1",
     "inversify": "^6.0.2",

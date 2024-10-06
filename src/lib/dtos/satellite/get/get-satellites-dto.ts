@@ -11,6 +11,7 @@ export const GetSatellitesDtoSchema = z.array(
     circumference: z.number(),
     rotationPeriod: z.number(),
     rotationSpeed: z.number(),
+    translationSpeed: z.number(),
     planet_name: z.string(),
   })
 );

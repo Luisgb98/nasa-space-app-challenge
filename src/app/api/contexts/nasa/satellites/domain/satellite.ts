@@ -13,6 +13,7 @@ interface SatellitePrimitives {
   circumference: number;
   rotationPeriod: number;
   rotationSpeed: number;
+  translationSpeed: number;
   planet_name: string;
 }
 
@@ -26,6 +27,7 @@ export class Satellite {
   readonly circumference: SatelliteNumber;
   readonly rotationPeriod: SatelliteNumber;
   readonly rotationSpeed: SatelliteNumber;
+  readonly translationSpeed: SatelliteNumber;
   readonly planet_name: PlanetName;
 
   constructor(
@@ -38,6 +40,7 @@ export class Satellite {
     circumference: SatelliteNumber,
     rotationPeriod: SatelliteNumber,
     rotationSpeed: SatelliteNumber,
+    translationSpeed: SatelliteNumber,
     planet_name: PlanetName
   ) {
     this.id = id;
@@ -49,6 +52,7 @@ export class Satellite {
     this.circumference = circumference;
     this.rotationPeriod = rotationPeriod;
     this.rotationSpeed = rotationSpeed;
+    this.translationSpeed = translationSpeed;
     this.planet_name = planet_name;
   }
 
@@ -62,6 +66,7 @@ export class Satellite {
     circumference: SatelliteNumber,
     rotationPeriod: SatelliteNumber,
     rotationSpeed: SatelliteNumber,
+    translationSpeed: SatelliteNumber,
     planet_name: PlanetName
   ): Satellite {
     return new Satellite(
@@ -74,6 +79,7 @@ export class Satellite {
       circumference,
       rotationPeriod,
       rotationSpeed,
+      translationSpeed,
       planet_name
     );
   }
@@ -89,6 +95,7 @@ export class Satellite {
       new SatelliteNumber(plainData.circumference),
       new SatelliteNumber(plainData.rotationPeriod),
       new SatelliteNumber(plainData.rotationSpeed),
+      new SatelliteNumber(plainData.translationSpeed),
       new PlanetName(plainData.planet_name)
     );
   }
@@ -104,6 +111,7 @@ export class Satellite {
       circumference: this.circumference.value,
       rotationPeriod: this.rotationPeriod.value,
       rotationSpeed: this.rotationSpeed.value,
+      translationSpeed: this.translationSpeed.value,
       planet_name: this.planet_name.value,
     };
   }

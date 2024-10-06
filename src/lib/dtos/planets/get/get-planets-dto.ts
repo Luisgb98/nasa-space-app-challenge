@@ -10,6 +10,7 @@ export const GetPlanetsDtoSchema = z.array(
     circumference: z.number(),
     rotationPeriod: z.number(),
     rotationSpeed: z.number(),
+    translationSpeed: z.number(),
     mayorAxis: z.number(),
     eccentricity: z.number(),
     texture: z.string(),

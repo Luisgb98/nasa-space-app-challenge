@@ -2,7 +2,7 @@ services:
   postgres:
     image: postgres:latest
     environment:
-      POSTGRES_DB: nasa
+      POSTGRES_DB: aventureros-al-exoplaneta
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgre+123
     ports:

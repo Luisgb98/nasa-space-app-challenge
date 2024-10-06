@@ -14,6 +14,7 @@ export type Planets = {
     circumference: number;
     rotationPeriod: number;
     rotationSpeed: number;
+    translationSpeed: number;
     mayorAxis: number;
     eccentricity: number;
     texture: string;
@@ -29,6 +30,7 @@ export type Satellites = {
     circumference: number;
     rotationPeriod: number;
     rotationSpeed: number;
+    translationSpeed: number;
     planet_name: string;
 };
 export type Sessions = {
@@ -49,8 +51,7 @@ export type Stars = {
     texture: string;
 };
 export type Users = {
-    id: Generated<number>;
-    userId: string;
+    id: string;
     email: string;
     password: string;
     createdAt: Generated<Timestamp>;

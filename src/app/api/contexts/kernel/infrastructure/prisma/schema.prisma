@@ -14,8 +14,7 @@ generator kysely {
 }
 
 model Users {
-    id       Int    @id @default(autoincrement())
-    userId   String @unique
+    id       String @unique
     email    String @unique
     password String
 
@@ -31,7 +30,7 @@ model Sessions {
     user_id    String
     expires_at DateTime
 
-    user Users @relation(fields: [user_id], references: [userId])
+    user Users @relation(fields: [user_id], references: [id])
 
     @@map("sessions")
 }
@@ -46,6 +45,7 @@ model Planets {
     circumference         Float
     rotationPeriod        Float
     rotationSpeed         Float
+    translationSpeed      Float
     mayorAxis             Float
     eccentricity          Float
     texture               String
@@ -66,6 +66,7 @@ model Satellites {
     circumference            Float
     rotationPeriod           Float
     rotationSpeed            Float
+    translationSpeed         Float
     planet_name              String
 
     planets Planets @relation(fields: [planet_name], references: [name])

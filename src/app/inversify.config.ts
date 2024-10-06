@@ -4,6 +4,7 @@ import { Container } from "inversify";
 
 import { TYPES } from "./types";
 
+import { UserFinder } from "./api/contexts/auth/users/application/user-finder/user-finder";
 import { UserCreator } from "./api/contexts/auth/users/application/user-creator/user-creator";
 import { UserVerifier } from "./api/contexts/auth/users/application/user-verifier/user-verifier";
 import { UsersRepository } from "./api/contexts/auth/users/domain/users-repository";
@@ -26,6 +27,7 @@ const container = new Container();
 container.bind<UsersRepository>(TYPES.USER).to(KyselyUserRepository);
 container.bind<UserCreator>(UserCreator).toSelf();
 container.bind<UserVerifier>(UserVerifier).toSelf();
+container.bind<UserFinder>(UserFinder).toSelf();
 
 container.bind<PlanetsRepository>(TYPES.PLANET).to(KyselyPlanetRepository);
 container.bind<PlanetsSearcher>(PlanetsSearcher).toSelf();

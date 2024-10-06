@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   Box,
@@ -15,38 +15,44 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
-  Text
-} from '@chakra-ui/react'
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-
+  Text,
+} from "@chakra-ui/react";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import React from "react";
+import { GetUserResponseDto } from "@/lib/dtos/users/get/get-user-response-dto";
 
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
-const Links = ['Dashboard', 'Projects', 'Team']
+const Links = ["Dashboard", "Projects", "Team"];
 
 const NavLink = (props: Props) => {
-  const { children } = props
+  const { children } = props;
 
   return (
     <Box
       as="a"
       px={2}
       py={1}
-      rounded={'md'}
+      rounded={"md"}
       _hover={{
-        textDecoration: 'none',
-        bg: useColorModeValue('gray.200', 'gray.700'),
+        textDecoration: "none",
+        bg: useColorModeValue("gray.200", "gray.700"),
       }}
-      href={'#'}>
+      href={"#"}
+    >
       {children}
     </Box>
-  )
+  );
+};
+
+interface NavProps {
+  user: GetUserResponseDto;
 }
 
-export default function Nav() {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+export default function Nav(props: NavProps) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
@@ -88,10 +94,9 @@ export default function Nav() {
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
+                <MenuItem>{props.user.email}</MenuItem>
                 <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
+                <MenuItem>Sing out</MenuItem>
               </MenuList>
             </Menu>
           </Flex>

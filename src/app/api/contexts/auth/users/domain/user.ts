@@ -4,7 +4,7 @@ import { UserEmail } from "../../../kernel/domain/user-email";
 import { UserPassword } from "./value-objects/user-password";
 
 interface UserPrimitives {
-  userId: string;
+  id: string;
   email: string;
   password: string;
   createdAt: Date;
@@ -12,20 +12,20 @@ interface UserPrimitives {
 }
 
 export class User {
-  readonly userId: UserId;
+  readonly id: UserId;
   readonly email: UserEmail;
   readonly password: UserPassword;
   readonly createdAt: UserDate;
   readonly updatedAt: UserDate;
 
   constructor(
-    userId: UserId,
+    id: UserId,
     email: UserEmail,
     password: UserPassword,
     createdAt: UserDate,
     updatedAt: UserDate
   ) {
-    this.userId = userId;
+    this.id = id;
     this.email = email;
     this.password = password;
     this.createdAt = createdAt;
@@ -34,26 +34,20 @@ export class User {
 
   // TODO(lgb): Implementar eventos de dominio
   static create(
-    userId: UserId,
+    id: UserId,
     email: UserEmail,
     password: UserPassword,
     createdAt: UserDate,
     updatedAt: UserDate
   ): User {
-    const userAggregate = new User(
-      userId,
-      email,
-      password,
-      createdAt,
-      updatedAt
-    );
+    const userAggregate = new User(id, email, password, createdAt, updatedAt);
 
     return userAggregate;
   }
 
   static fromPrimitives(plainData: UserPrimitives): User {
     return new User(
-      new UserId(plainData.userId),
+      new UserId(plainData.id),
       new UserEmail(plainData.email),
       new UserPassword(plainData.password),
       new UserDate(plainData.createdAt),
@@ -63,7 +57,7 @@ export class User {
 
   toPrimitives(): UserPrimitives {
     return {
-      userId: this.userId.value,
+      id: this.id.value,
       email: this.email.value,
       password: this.password.value,
       createdAt: this.createdAt.value,
