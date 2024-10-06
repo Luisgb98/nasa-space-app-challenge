@@ -16,6 +16,7 @@ const env = {
     DB_PASSWORD: process.env.POSTGRES_PASSWORD ?? "",
     DB_PORT: "",
     DB_POOL_MAX: process.env.DB_POOL_MAX ?? "",
+    SSL: true,
   },
 };
 
