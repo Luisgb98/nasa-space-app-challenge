@@ -20,7 +20,7 @@ const SolarSystem = ({velocity} : SolarSystemProps) => {
       <ambientLight intensity={2} />
       <OrbitControls
         ref={orbitRef}
-        // enableRotate={false}
+        enableRotate={false}
         enableZoom={true}
       />
       <PlanetsHandler velocity={velocity}/>
