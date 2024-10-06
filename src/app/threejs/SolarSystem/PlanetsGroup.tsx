@@ -30,7 +30,7 @@ export const PlanetsGroup = ({velocity}) => {
                   texture={planet.texture}
                   radius={planet.scaledRadius}
                   distance={planet.scaledDistance + (sun.radius * 1.5)}
-                  speed={velocity * 0.001}
+                  speed={planet.translationSpeed * velocity * 0.00005}
                   e={planet.eccentricity}
                   name={planet.name}
                   rotationspeed={planet.rotationSpeed}
