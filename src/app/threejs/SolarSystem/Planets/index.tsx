@@ -6,11 +6,11 @@ import { TextureLoader, Vector3 } from "three";
 
 import * as THREE from "three";
 import { Html } from "@react-three/drei";
-import { Planet } from "@/app/api/contexts/nasa/planets/domain/planet";
 import { GetPlanetDto } from "@/lib/dtos/planets/get/get-planets-dto";
 import { GetSatellitesDto } from "@/lib/dtos/satellite/get/get-satellites-dto";
 import { Satellite } from "@/app/api/contexts/nasa/satellites/domain/satellite";
 import { WidgetParams } from "@/app/page";
+
 
 interface LabelProps {
   position: [number, number, number];
@@ -61,7 +61,7 @@ interface RingProps {
   e: number;
 }
 
-export const Sun = ({ texture, radius }: SunProps) => {
+export const Sun = ({ texture, radius}: SunProps) => {
   const planetTexture = useLoader(TextureLoader, texture);
   return (
     <>
@@ -72,7 +72,7 @@ export const Sun = ({ texture, radius }: SunProps) => {
         <Label position={[0, 0, radius + 30]} text="Sun" />
       </mesh> */}
 
-      <mesh>
+      <mesh >
         <sphereGeometry args={[radius, 16, 16]} />
         <meshStandardMaterial map={planetTexture} />
       </mesh>
@@ -157,8 +157,9 @@ export function Ring({ texture, distance, speed, e }: RingProps) {
 }
 
 interface PlanetGroupProps {
-  planet: GetPlanetDto;
-  velocity: number;
+  planet: GetPlanetDto
+  velocity: number
+  isPlanetSelected: boolean
   zoomToView: (
     focusRef: React.RefObject<THREE.Object3D>,
     planet: GetPlanetDto
@@ -169,6 +170,7 @@ interface PlanetGroupProps {
 export const PlanetGroup = ({
   planet,
   velocity,
+  isPlanetSelected,
   zoomToView,
   params,
 }: PlanetGroupProps) => {
@@ -209,7 +211,7 @@ export const PlanetGroup = ({
     const z = b * Math.sin(theta);
 
     // Update planet's position
-    if (!clicked) groupRef.current.position.set(x, 0, z);
+    if (!isPlanetSelected) groupRef.current.position.set(x, 0, z);
     ref.current.rotateOnAxis(new Vector3(0, 1, 0).normalize(), 0.05);
   });
 
