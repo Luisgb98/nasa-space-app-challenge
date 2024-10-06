@@ -25,6 +25,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  Link,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import React from "react";
@@ -101,7 +102,9 @@ export default function Nav(props: NavProps) {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Text>AstrON</Text>
+            <Link href="/">
+              <Text>AstrON</Text>
+            </Link>
             <HStack
               as={"nav"}
               spacing={4}

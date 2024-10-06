@@ -58,10 +58,20 @@ export type Users = {
     createdAt: Generated<Timestamp>;
     updatedAt: Timestamp;
 };
+export type WidgetConfigs = {
+    id: Generated<number>;
+    user_id: string;
+    velocity: number;
+    orbits: boolean;
+    planets: boolean;
+    satellites: boolean;
+    dwarfs: boolean;
+};
 export type DB = {
     planets: Planets;
     satellites: Satellites;
     sessions: Sessions;
     stars: Stars;
     users: Users;
+    "widget-configs": WidgetConfigs;
 };

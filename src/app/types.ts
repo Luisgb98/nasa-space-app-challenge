@@ -3,6 +3,7 @@ const TYPES = {
   PLANET: Symbol.for("PlanetsRepository"),
   SATELLITE: Symbol.for("SatellitesRepository"),
   STAR: Symbol.for("StarsRepository"),
+  WIDGETCONFIG: Symbol.for("WidgetConfigRepository"),
 };
 
 export { TYPES };

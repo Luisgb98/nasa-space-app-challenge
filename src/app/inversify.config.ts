@@ -21,6 +21,10 @@ import { KyselySatelliteRepository } from "./api/contexts/nasa/satellites/infras
 import { StarsSearcher } from "./api/contexts/nasa/stars/application/stars-searcher/stars-searcher";
 import { StarsRepository } from "./api/contexts/nasa/stars/domain/stars-repository";
 import { KyselyStarRepository } from "./api/contexts/nasa/stars/infrastructure/kysely/kysely-star-repository";
+import { WidgetConfigRepository } from "./api/contexts/nasa/widget-config/domain/widget-config-repository";
+import { KyselyWidgetConfigRepository } from "./api/contexts/nasa/widget-config/infrastructure/kysely/kysely-widget-config-repository";
+import { WidgetConfigUpsert } from "./api/contexts/nasa/widget-config/application/widget-config-upsert/widget-config-upsert";
+import { WidgetConfigFinder } from "./api/contexts/nasa/widget-config/application/widget-config-finder/widget-config-finder";
 
 const container = new Container();
 
@@ -39,5 +43,11 @@ container.bind<SatellitesSearcher>(SatellitesSearcher).toSelf();
 
 container.bind<StarsRepository>(TYPES.STAR).to(KyselyStarRepository);
 container.bind<StarsSearcher>(StarsSearcher).toSelf();
+
+container
+  .bind<WidgetConfigRepository>(TYPES.WIDGETCONFIG)
+  .to(KyselyWidgetConfigRepository);
+container.bind<WidgetConfigUpsert>(WidgetConfigUpsert).toSelf();
+container.bind<WidgetConfigFinder>(WidgetConfigFinder).toSelf();
 
 export { container };
