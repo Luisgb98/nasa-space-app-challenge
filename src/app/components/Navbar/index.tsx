@@ -51,7 +51,7 @@ interface NavProps {
   user: GetUserResponseDto;
 }
 
-export default function Nav(props: NavProps) {
+export default function Nav() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -94,7 +94,7 @@ export default function Nav(props: NavProps) {
                 />
               </MenuButton>
               <MenuList>
-                <MenuItem>{props.user.email}</MenuItem>
+                <MenuItem></MenuItem>
                 <MenuDivider />
                 <MenuItem>Sing out</MenuItem>
               </MenuList>

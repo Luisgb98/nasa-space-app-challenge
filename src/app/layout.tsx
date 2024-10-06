@@ -73,14 +73,14 @@ export const getUser = async (userId: string): Promise<GetUserResponseDto> => {
   return await userFinder.execute(userId);
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const result = await validateRequest();
-  if (!result.user) return;
-  const user = await getUser(result.user.id);
+  // const result = await validateRequest();
+  // if (!result.user) return;
+  // const user = await getUser(result.user.id);
   return (
     <html lang="en">
       <body
@@ -88,7 +88,7 @@ export default async function RootLayout({
         style={{ backgroundColor: "#021631" }}
       >
         <Providers>
-          <Nav user={user} />
+          <Nav />
           {children}
         </Providers>
       </body>
