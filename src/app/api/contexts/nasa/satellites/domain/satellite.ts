@@ -2,6 +2,7 @@ import { PlanetName } from "../../planets/domain/value-objects/planet-name";
 import { SatelliteId } from "./value-objects/satellite-id";
 import { SatelliteName } from "./value-objects/satellite-name";
 import { SatelliteNumber } from "./value-objects/satellite-number";
+import { SatelliteTexture } from "./value-objects/satellite-texture";
 
 interface SatellitePrimitives {
   id: number;
@@ -14,6 +15,7 @@ interface SatellitePrimitives {
   rotationPeriod: number;
   rotationSpeed: number;
   translationSpeed: number;
+  texture: string;
   planet_name: string;
 }
 
@@ -28,6 +30,7 @@ export class Satellite {
   readonly rotationPeriod: SatelliteNumber;
   readonly rotationSpeed: SatelliteNumber;
   readonly translationSpeed: SatelliteNumber;
+  readonly texture: SatelliteTexture;
   readonly planet_name: PlanetName;
 
   constructor(
@@ -41,6 +44,7 @@ export class Satellite {
     rotationPeriod: SatelliteNumber,
     rotationSpeed: SatelliteNumber,
     translationSpeed: SatelliteNumber,
+    texture: SatelliteTexture,
     planet_name: PlanetName
   ) {
     this.id = id;
@@ -53,6 +57,7 @@ export class Satellite {
     this.rotationPeriod = rotationPeriod;
     this.rotationSpeed = rotationSpeed;
     this.translationSpeed = translationSpeed;
+    this.texture = texture;
     this.planet_name = planet_name;
   }
 
@@ -67,6 +72,7 @@ export class Satellite {
     rotationPeriod: SatelliteNumber,
     rotationSpeed: SatelliteNumber,
     translationSpeed: SatelliteNumber,
+    texture: SatelliteTexture,
     planet_name: PlanetName
   ): Satellite {
     return new Satellite(
@@ -80,6 +86,7 @@ export class Satellite {
       rotationPeriod,
       rotationSpeed,
       translationSpeed,
+      texture,
       planet_name
     );
   }
@@ -96,6 +103,7 @@ export class Satellite {
       new SatelliteNumber(plainData.rotationPeriod),
       new SatelliteNumber(plainData.rotationSpeed),
       new SatelliteNumber(plainData.translationSpeed),
+      new SatelliteTexture(plainData.texture),
       new PlanetName(plainData.planet_name)
     );
   }
@@ -112,6 +120,7 @@ export class Satellite {
       rotationPeriod: this.rotationPeriod.value,
       rotationSpeed: this.rotationSpeed.value,
       translationSpeed: this.translationSpeed.value,
+      texture: this.texture.value,
       planet_name: this.planet_name.value,
     };
   }
