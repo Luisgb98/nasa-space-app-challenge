@@ -10,12 +10,13 @@ import { GetPlanetDto, GetPlanetsDto } from "@/lib/dtos/planets/get/get-planets-
 import { Text } from "@chakra-ui/react";
 import { useFrame } from "@react-three/fiber";
 import { Planet } from "@/app/api/contexts/nasa/planets/domain/planet";
+import { WidgetParams } from "@/app/page";
 
 interface PlanetsHandlerProps {
-  velocity: number;
+  params: WidgetParams
 }
 
-export const PlanetsHandler = ({velocity}: PlanetsHandlerProps) => {
+export const PlanetsHandler = ({params}: PlanetsHandlerProps) => {
   const [planets, setPlanets] = React.useState<GetPlanetsDto>();
   useEffect(() => {
     fetch("/api/planets")
@@ -56,12 +57,14 @@ export const PlanetsHandler = ({velocity}: PlanetsHandlerProps) => {
         {planets?.map((planet, index) => {
           return (
             <>
+            { params.togPlanets && (
               <PlanetGroup
                 key={index + "-planet"}
                 planet={planet}
-                velocity={velocity}
+                velocity={params.velocity}
                 zoomToView={zoomToView}
               />
+            )}
               {
                 <Ellipse
                   key={index + "-ellipse"}
